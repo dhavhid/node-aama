@@ -1,0 +1,320 @@
+<style>
+    label span {color:red;}
+</style>
+<div class="container-fluid">
+    {{#if error}}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h2>You need to be logged in to see this content.</h2>
+            </div>
+        </div>
+    {{else}}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>Business Profile</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                Please fill in the following information. All fields marked with an <span style="color: red;">*</span> are required.
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger" style="display:none;" id="alert-error" role="alert">
+                    <strong>Warning!</strong> There are some errors in the form below, please fix them before submitting again.<br /><br />
+                    <p class="user-error-content"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-success" style="display:none;" id="alert-success" role="alert">
+                    <strong>Success!</strong> Your changes were saved successfully.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger" style="display:none;" id="alert-danger" role="alert">
+                    <strong>Error!</strong> Your changes could not be saved at this time. Please try again later.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <form>
+                    <input type="hidden" name="_Memb_Id" value="{{business._Memb_Id}}">
+                    <input type="hidden" name="InfoEmail_Id" value="{{business.InfoEmail_Id}}">
+                    <input type="hidden" name="Phone1_Id" value="{{business.Phone1_Id}}">
+                    <input type="hidden" name="Phone2_Id" value="{{business.Phone2_Id}}">
+                    <input type="hidden" name="Fax_Id" value="{{business.Fax_Id}}">
+                    <input type="hidden" name="MailAddr_Id" value="{{business.MailAddr_Id}}">
+                    <input type="hidden" name="PhyAddr_Id" value="{{business.PhyAddr_Id}}">
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> General Info</legend>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Name <span>*</span></label>
+                                        <input class="form-control" type="text" name="Name" value="{{business.Name}}" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Doing Business As</label>
+                                        <input class="form-control" type="text" name="DBA" value="{{business.DBA}}" placeholder="Doing Business As">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Business Description </label>
+                                        <textarea class="form-control" rows="5" cols="100" name="BusinessDescription">{{business.BusinessDescription}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> Contact & Address</legend>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Intl. Country Code</label>
+                                        <input class="form-control" type="text" name="Country_Code" value="{{business.Phone1.Country_Code}}" placeholder="Intl. Country Code">
+                                        <span class="help-block">Only if Non-North American</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Phone <span>*</span></label>
+                                        <input class="form-control" type="tel" name="Phone1" value="{{business.Phone1.Phone}}" placeholder="Phone">
+                                        <span class="help-block">ex 4052978900</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Fax </label>
+                                        <input class="form-control" type="tel" name="Fax" value="{{business.Fax.Phone}}" placeholder="Fax">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Toll Free</label>
+                                        <input class="form-control" type="tel" name="Phone2" value="{{business.Phone2.Phone}}" placeholder="Toll Free">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Info Email</label>
+                                        <input class="form-control" type="email" name="Email_Address" value="{{business.InfoEmail.Email_Address}}" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Website</label>
+                                        <input class="form-control" type="url" name="Url" value="{{business.WebSite.Url}}" placeholder="Website">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Mailing City <span>*</span></label>
+                                        <input class="form-control" type="text" name="City" value="{{business.MailingAddress.City}}" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Mailing State <span>*</span></label>
+                                        <select class="form-control" name="State">
+                                            <option value=""></option>
+                                            {{#each states}}
+                                                <option value="{{code}}" {{selected code ../business.MailingAddress.State}}>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Mailing Zip <span>*</span></label>
+                                        <input class="form-control" type="text" name="Zip" value="{{business.MailingAddress.Zip}}" placeholder="Zipcode" min="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Mailing Country</label>
+                                        <select class="form-control" name="Country">
+                                            <option value=""></option>
+                                            {{#each countries}}
+                                                <option value="{{code}}" {{selected code ../business.MailingAddress.Country}}>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                        <span class="help-block">Only if Non-USA</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Address <span>*</span></label>
+                                        <input class="form-control" type="text" name="Address1" value="{{business.MailingAddress.Address1}}" placeholder="Line 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="Address2" value="{{business.MailingAddress.Address2}}" placeholder="Line 2">
+                                        <span class="help-block">e.g. POB, Ste, Bldg, Fl.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="add_another_address" id="add_other_address" {{#compare business.PhyAddr_Id "!=" "0"}}checked="checked"{{/compare}} onclick="window.Cubic.user.addOtherAddress();"> Add Physical Address
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="OtherAddress {{#compare business.PhyAddr_Id "==" "0"}}hidden{{/compare}}">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">City</label>
+                                            <input class="form-control" type="text" name="City_OA" value="{{business.PhysicalAddress.City}}" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">State</label>
+                                            <select class="form-control" name="State_OA">
+                                                <option value=""></option>
+                                                {{#each states}}
+                                                    <option value="{{code}}" {{selected code business.PhysicalAddress.State}}>{{name}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Zip</label>
+                                            <input class="form-control" type="text" name="Zip_OA" value="{{business.PhysicalAddress.Zip}}" placeholder="Zip" min="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Country</label>
+                                            <select class="form-control" name="Country_OA">
+                                                <option value=""></option>
+                                                {{#each countries}}
+                                                    <option value="{{code}}" {{selected code business.PhysicalAddress.Country}}>{{name}}</option>
+                                                {{/each}}
+                                            </select>
+                                            <span class="help-block">Only if Non-USA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Address</label>
+                                            <input class="form-control" type="text" name="Address1_OA" value="{{business.PhysicalAddress.Address1}}" placeholder="Line 1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="Address2_OA" value="{{business.PhysicalAddress.Address2}}" placeholder="Line 2">
+                                            <span class="help-block">e.g. POB, Ste, Bldg, Fl.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> Social Links</legend>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">LinkedIn </label>
+                                        <input class="form-control" type="text" name="linkedin" value="{{business.linkedin}}" placeholder="LinkedIn">
+                                        <p class="help-block">i.e. http://www.linkedin.com/in/joedoe </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Twitter </label>
+                                        <input class="form-control" type="text" name="twitter" value="{{business.twitter}}" placeholder="Twitter">
+                                        <p class="help-block">i.e. https://twitter.com/joedoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Facebook </label>
+                                        <input class="form-control" type="text" name="facebook" value="{{business.facebook}}" placeholder="Facebook">
+                                        <p class="help-block">i.e. http://www.facebook.com/joedoe</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Google +</label>
+                                        <input class="form-control" type="text" name="googleplus" value="{{business.googleplus}}" placeholder="Google Plus">
+                                        <p class="help-block">i.e. https://plus.google.com/+JoeDoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Youtube </label>
+                                        <input class="form-control" type="text" name="youtube" value="{{business.youtube}}" placeholder="Youtube">
+                                        <p class="help-block">i.e. https://www.youtube.com/user/JoeDoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">MySpace </label>
+                                        <input class="form-control" type="text" name="myspace" value="{{business.myspace}}" placeholder="MySpace">
+                                        <p class="help-block">i.e. https://myspace.com/joedoe</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                            <input type="reset" class="button-greenc" value="Cancel">
+                            <button class="button-blue" id="btn_submit" onclick="window.Cubic.user.validateBusiness(event);">Save</button>
+                        </div>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    {{/if}}
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('input[type="text"], input[type="email"], input[type="tel"], input[type="number"]').keyup(function(){
+            $(this).parent().removeClass('has-error');
+        });
+        $('select').change(function(){
+            $(this).parent().removeClass('has-error');
+        });
+        Inputmask('(999) 999-9999').mask('input[type="tel"]');
+        Inputmask({mask: '99999[-9999]', greedy: false}).mask('input[name="Zip"], input[name="Zip_OA"]');
+    });
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta name="robots" content="noindex, nofollow">
+	
+	<title>AAMA</title>
+	
+	<!-- CSS Styles -->
+	<link rel="stylesheet" href="/assets/fonts/icons/aama-icons.css" type="text/css">
+	<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/build/bundle.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+	<!-- Javascript -->
+	<script src="/assets/vendor/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	
+</head>
+<body>
+
+
+	{{> navbar}}
+
+	{{> popout-menu}}
+
+	<!-- Banner -->
+	<div class="banner blog-banner clearfix">
+		<div class='banner-img'></div>
+		<h2><a href="/blog">{{title}}</a></h2>
+	</div>
+
+	{{#if tabs}}
+		<!-- Tabs -->
+		<div class="tab-menu">
+			<ul class="tabs">
+				<li class="{{#unless category}}active{{/unless}}">
+					<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog">All Blogs</a>
+				</li>
+				<li class="{{active category 'trade-secrets'}}">
+					<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog-category/trade-secrets">Trade Secrets</a>
+				</li>
+				<li class="{{active category 'member-edge'}}">
+					<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog-category/member-edge">Member Edge</a>
+				</li>
+				<li class="{{active category 'building-secrets'}}">
+					<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog-category/building-secrets">Building Secrets</a>
+				</li>
+				<li class="{{active category 'socially-speaking'}}">
+					<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog-category/socially-speaking">Socially Speaking</a>
+				</li>
+			</ul>
+		</div>
+	{{/if}}
+
+
+	<div class="content-wrapper">
+		{{{body}}}
+	</div>
+
+	{{> footer}}
+
+	{{> scripts}}
+
+</body>
+</html>

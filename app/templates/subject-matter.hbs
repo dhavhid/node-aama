@@ -1,0 +1,186 @@
+<!-- Breadcrumbs -->
+<section class="breadcrumbs">
+	<div class="container margin-tb-sm">
+		<span><a href="/{{audienceSlug}}">{{audience}}</a> > {{subject}}</span>
+	</div>
+</section>
+
+
+<!-- In This Section -->
+{{#if pages}}
+	<section class="page-list">
+		<div class="container margin-t-lg">
+			<h2>In this section</h2>
+
+			{{#each pages}}
+				<a href="/pages/{{slug}}">{{title}}</a>
+			{{/each}}
+		</div>
+	</section>
+{{/if}}
+
+
+<!-- Directory Strip -->
+<!--
+<section class="search-directory">
+	<a href="#">
+		<div class="strip">
+			<div class="row">
+				<div class="column-768-three-fourth column-1000-five-sixth">
+					<p>Click here to search our full directory of AAMA Certified Products.</p>
+				</div>
+
+				<div class="column-768-fourth column-1000-sixth">
+					<button class="button-blue">Click Here <i class="glyphicon glyphicon-arrow-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</a>
+</section>
+-->
+<!-- End of Directory Strip -->
+
+
+<!-- Subject Matter Content -->
+{{#with subject_content}}
+	<section class="subject-matter-content">
+		<div class="container margin-tb-lg">
+			<div class="post">
+				<h2 class="post-title">{{title}}</h2>
+				<h3 class="post-subtitle">{{byline}}</h3>
+
+				<div class="post-content clearfix">
+					{{#if images.featuredImage}}
+						<div class="post-thumb">
+							<img class="post-img" src="{{images.featuredImage.data.thumb}}" alt="Post Image">
+						</div>
+					{{/if}}
+
+					{{{content}}}
+
+				</div> <!-- End post content -->
+
+			</div> <!-- End post -->
+		</div>
+	</section>
+{{/with}}
+
+
+<!-- What's New -->
+<section class="new-products">
+	<div class="container margin-tb-lg">
+		<h2>What's new</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>News</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="/assets/images/product1.jpg" alt="Product 1">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>AAMA Member Joe Smith Wins National Award</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>Featured Class</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="/assets/images/product2.jpg" alt="Product 2">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>Name of Featured Class</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>News</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="/assets/images/product1.jpg" alt="Product 1">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>AAMA Member Joe Smith Wins National Award</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="read-all" href="#">Read More ></a>
+	</div>
+</section>
+<!-- End of What's New -->
+
+
+<!-- Recent News -->
+<section class="recent-news">
+	<div class="container margin-tb-xl">
+		<div class="row">
+			<h2 style="padding: 0px 15px;">
+				<a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}{{slugify subject}}/blog">{{subject}} News</a>
+			</h2>
+			{{#each news}}
+				<div class="col-md-4">
+					<div class="blog-post">
+						<span class="post-date">{{dateFormat publishDate "mmmm d, yyyy"}}</span>
+						<a href="/blog/{{id}}"><h4>{{title}}</h4></a>
+						{{#if images.featuredImage}}
+							<img src="{{images.featuredImage.data.thumb}}" alt="Thumbnail" class="post-thumb img-responsive">
+						{{/if}}
+						<p>{{excerpt content 55}}</p>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</section>
+<!-- End of Recent News -->
+
+
+<!-- Become Member Strip -->
+<section class="become-member">
+	<div class="row no-gutters">
+		<div class="col-sm-7">
+			<div class="green-box">
+				<p>Make the most of your business.<br>
+				Become an AAMA member today.</p>
+				<button class="button-green">Click Here <i class="glyphicon glyphicon-arrow-right"></i></button>
+			</div>
+		</div>
+
+		<div class="col-sm-5">
+			<div class="image-box"><div class="member-image"></div></div>
+		</div>
+	</div>
+</section>
+<!-- End of Become Member Strip -->
+
+
+<!-- Courses -->
+<section class="courses">
+	<div class="container margin-tb-md">
+		<h4>Related Courses</h4>
+		<p>If you like courses about certified products, you might also like</p>
+
+		<div class="row">
+			<div class="col-sm-3"><img class="course-img" src="/assets/images/course1.jpg"></div>
+			<div class="col-sm-3"><img class="course-img" src="/assets/images/course2.jpg"></div>
+			<div class="col-sm-3"><img class="course-img" src="/assets/images/course3.jpg"></div>
+			<div class="col-sm-3"><img class="course-img" src="/assets/images/course4.jpg"></div>
+		</div>
+	</div>
+</section>
+<!-- End of Courses -->

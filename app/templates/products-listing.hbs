@@ -1,0 +1,73 @@
+<section class="products-section">
+    <div class="container margin-tb-md">
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i> </a></li>
+                    <li class="active">Certified Product Directory</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row visible-xs">
+            <div class="col-xs-12">
+                <a href="/products/search" class="button-blue col-xs-12"><i class="fa fa-search"></i> Advanced search</a>
+                <br /><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <ul class="list-group hidden list-products">
+                    {{#each manufacturers}}
+                        <li class="list-group-item" productid="{{id}}"><a href="javascript:window.Cubic.products.getManufacturer(window.event,{{id}});">{{name}} <small><strong>({{count}})</strong></small></a></li>
+                    {{/each}}
+                </ul>
+                <select class="form-control" id="strManuFact" name="strManuFact" onchange="window.Cubic.products.getManufacturer(window.event);">
+                    <option value="-1">-- Select a manufacturer --</option>
+                    {{#each manufacturers}}
+                        <option value="{{id}}">{{name}} <small><strong>({{count}})</strong></small></option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12 hidden-xs">
+                <a href="/products/search" class="button-blue col-md-12 col-sm-12 col-xs-12"><i class="fa fa-search"></i> Advanced search</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Product content goes here. -->
+                <div class="row">
+                    <div class="col-md-12"><h3 class="manufacturer-name"></h3></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 pages text-right">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="products-content"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 pages">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="hidden">
+    <select class="form-control" name="strProdType" id="strProdType"><option value="ALL">ALL</option></select>
+    <select class="form-control" name="strPerfClass" id="strPerfClass"><option value="ALL">All Classes</option></select>
+    <select class="form-control" name="strPerfGradeEquator" id="strPerfGradeEquator"><option value="=">=</option><option value=">=">&#8805;</option></select>
+    <select class="form-control" name="strPerfGrade" id="strPerfGrade"><option value="ALL">ALL</option></select>
+    <select class="form-control" name="strFrameMat" id="strFrameMat"><option value="ALL">ALL</option></select>
+</div>
+<script type="text/javascript">
+    $(function(){
+        // get the first listed manufacturer to pull products.
+        /*var manufacturer = $('ul.list-products li').first().attr('productid');
+        if (!isNaN(manufacturer) && manufacturer != "-1") {
+            window.Cubic.products.getManufacturer(window.event,manufacturer);
+        }*/
+    });
+</script>

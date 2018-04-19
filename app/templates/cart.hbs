@@ -1,0 +1,91 @@
+<!-- TODO: This is stubbed out -->
+<section class='cart'>
+	<div class="container">
+		<br />
+		<div class="row">
+			<div class="col-sm-12 col-md-12">
+				<h2>Shopping Cart</h2>
+			</div>
+		</div>
+		<br />
+		<div class="row"><div class="col-sm-12 col-md-12 message-error"></div></div>
+		{{#if error}}
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					{{{message}}}
+					<br /><br />
+				</div>
+			</div>
+		{{else}}
+			<div class="row">
+				<div class="col-sm-12 col-md-12 cart-container">
+
+					<table class="table table-hover cart" style="border: 0px none #fff;">
+						<thead>
+						<tr>
+							<th colspan="2">Event Add-on</th>
+							<th>Quantity</th>
+							<th class="text-center">Price (USD)</th>
+							<th class="text-center" width="20">Total (USD)</th>
+						</tr>
+						</thead>
+						<tbody>
+						{{#each options}}
+							<tr>
+								<td class="col-sm-8 col-md-6" colspan="5">
+									<h4>{{eventName}}</h4>
+								</td>
+							</tr>
+							{{#each items}}
+								<tr id="tr{{transactionId}}">
+									<td class="col-sm-1 col-md-1">
+										<button type="button" class="btn btn-danger btn-sm" id="btn{{transactionId}}" onclick="window.Cubic.cart.evRemoveFromCart({{transactionId}});">
+											<span class="glyphicon glyphicon-remove"></span> Remove
+										</button>
+									</td>
+									<td class="col-sm-8 col-md-6">
+										<h5>{{description}}</h5>
+									</td>
+									<td class="col-sm-1 col-md-1 text-right">{{quantity}}</td>
+									<td class="col-sm-1 col-md-1 text-right">
+										$ <strong>{{cost}}</strong>
+										<input type="hidden" name="shipping{{transactionId}}" class="item-shipping" value="{{shipping}}">
+									</td>
+									<td class="col-sm-1 col-md-1 text-right">$ <strong class="item-cost">{{cost}}</strong></td>
+								</tr>
+							{{/each}}
+						{{/each}}
+						<tr>
+							<td colspan="4" style="text-align: right;"><h5>Subtotal</h5></td>
+							<td class="text-right"><h4>$ <strong class="cart-subtotal">{{subtotal}}</strong></h4></td>
+						</tr>
+						<tr>
+							<td colspan="4" style="text-align: right;"><h5>Estimated shipping</h5></td>
+							<td class="text-right"><h4>$ <strong class="cart-shipping">{{shipping}}</strong></h4></td>
+						</tr>
+						<tr>
+							<td colspan="4" style="text-align: right;"><h3>Total</h3></td>
+							<td class="text-right"><h3><strong class="cart-total">$ {{total}}</strong></h3></td>
+						</tr>
+						<tr>
+							<td>   </td>
+							<td>   </td>
+							<td>
+								<button type="button" class="btn btn-danger cart-empty" onclick="window.Cubic.cart.evEmptyCart()">Empty Cart</button>
+							</td>
+							<td>
+								<a href="/events" class="btn btn-default">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+								</a></td>
+							<td>
+								<a href="/checkout" class="btn btn-success">
+									Checkout <span class="glyphicon glyphicon-chevron-right"></span>
+								</a></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</section>

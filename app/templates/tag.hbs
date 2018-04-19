@@ -1,0 +1,44 @@
+<!-- Post Listing -->
+<section class="posts-section">
+	<div class="container margin-tb-md">
+		<div class="posts-list">
+
+			<strong>Filtering by tag: "{{tag}}"</strong>
+			
+			{{#if posts}}
+
+				{{#each posts}}
+					<div class="post">
+						<div class="row">
+							{{#if images.featuredImage}}
+								<div class="col-sm-3">
+									<div class="post-thumb">
+										<img class="img-responsive" src="{{images.featuredImage.data.thumb}}" alt="Post Image">
+									</div>
+								</div>
+							{{/if}}
+							<div class="col-sm-{{ternary images.featuredImage 9 12}}">
+								<div class="post-body">
+									<div class="post-date">{{dateFormat publishDate "mmmm d, yyyy"}}</div>
+									<h4 class="post-title"><a href="/blog/{{id}}">{{title}}</a></h4>
+									<div class="post-content">
+										<p>{{excerpt content 85}}</p>
+										<a class="read-more" href="/blog/{{id}}">Read More &gt;</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{{/each}}
+
+			{{else}}
+
+				<h1>No results</h1>
+
+			{{/if}}
+
+
+		</div> <!-- End posts-list -->
+	</div> <!-- End container -->
+</section>
+<!-- End of Posts Listing -->

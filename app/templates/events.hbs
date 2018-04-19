@@ -1,0 +1,66 @@
+<!-- Event Listing -->
+<section class="events-section">
+	<div class="container margin-tb-md">
+		<div class="events-entry">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i></a></li>
+                <li class="active">Events</li>
+            </ol>
+        </div>
+		<div class="events-list">
+			<h1>Events</h1>
+			<hr/>
+			{{#if categoryCode}}
+				<p class='events-category'>
+					{{categoryName}}
+				</p>
+			{{/if}}
+			{{#each events}}
+
+				<div class='events-entry'>
+
+					<div class='events-date'>
+						{{#compare startdate "==" enddate}}
+							{{dateFormat startdate "mmm dd, yyyy"}}
+						{{/compare}}
+						{{#compare startdate "!=" enddate}}
+							{{dateFormat startdate "mmm dd, yyyy"}} &mdash; {{dateFormat enddate "mmm dd, yyyy"}}
+							{{#unless isPast}}
+								{{#compare cancelled "==" "false"}}
+		                            &nbsp;&nbsp; <a title="Add to calendar" href="/events/{{cale_id}}/{{event}}.ics"><i class="fa fa-calendar-plus-o"></i></a>
+		                        {{/compare}}
+							{{/unless}}
+						{{/compare}}
+					</div>
+
+					<h2 class='events-title'>
+						<a href='/events/{{cale_id}}'>{{event}}</a>
+					</h2>
+
+					{{#if category}}
+						<p class='events-category'><a href='/event-category/{{categorySlug}}'>Category: {{categoryName}}</a></p>
+					{{/if}}
+
+					<div class='events-location'>
+						{{location}}
+					</div>
+
+					{{#if isPast}}
+						<p><span class='events-cancelled label label-default'>this event has passed</span></p>
+					{{else}}
+						{{#compare cancelled "!=" "false"}}
+							<p><span class='events-cancelled label label-default'>this event was canceled</span></p>
+						{{/compare}}
+					{{/if}}
+
+					<p>{{{excerpt descript 50}}}</p>
+
+					<hr>
+				</div>
+			{{/each}}
+
+
+		</div> <!-- End events-list -->
+	</div> <!-- End container -->
+</section>
+<!-- End of Events Listing -->

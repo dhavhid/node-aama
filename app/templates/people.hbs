@@ -1,0 +1,72 @@
+<!-- People Listing -->
+<section class="people-section">
+	<div class="container margin-tb-lg">
+		<div class="people-list">
+			<ol class="breadcrumb">
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+				<li class="active">Staff</li>
+			</ol>
+		</div>
+		<div class="people-list">
+
+			<div class="staff-intro">
+				<p>Our staff is organized into six primary departments – Executive, Accounting, Association Services, Meetings, Technical Services, and Certification</p>
+			</div>
+
+			{{#each groups}}
+				<h2>{{key}}</h2>
+				<p>{{description}}</p>
+
+				{{#each this}}
+					<div class="row">
+					{{#each this}}
+
+							<div class="col-sm-4 col-xs-6 col-xxs-12">
+								<div class="content-box staff-box">
+									{{#if images.logo}}
+
+										<div class="row no-gutters">
+											<div class="col-sm-4">
+												<div class="user-thumb">
+													<img class="img-responsive" src="{{images.logo.data.thumb}}" alt="{{images.logo.altTag}}">
+												</div>
+											</div>
+											<div class="col-sm-8">
+												<div class="user-info">
+													<strong style="font-size: 1.1em;">{{firstName}} {{lastName}}</strong>
+													<div class="member-title">{{title}}</div>
+													<!-- <h4 class="user-title">{{title}}</h4> -->
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-12 text-right">
+                                                {{#if officePhone}}
+                                                    <a href="tel.:{{officePhone}}" title="Office Phone: {{officePhone}}"><i class="fa fa-2x fa-phone"></i> </a>
+                                                {{/if}}
+                                                {{#if mobilePhone}}
+                                                    <a href="tel.:{{mobilePhone}}" title="Mobile Phone: {{mobilePhone}}"><i class="fa fa-2x fa-mobile"></i> </a>
+                                                {{/if}}
+                                                {{#if fax}}
+                                                    <a href="tel.:{{fax}}" title="Fax: {{fax}}"><i class="fa fa-2x fa-fax"></i> </a>
+                                                {{/if}}
+                                                {{#if email}}
+                                                    <a href="mailto:{{email}}" title="{{email}}"><i class="fa fa-2x fa-envelope-o"></i></a>
+                                                {{/if}}
+											</div>
+										</div>
+
+									{{/if}}
+								</div>
+							</div>
+
+					{{/each}}
+					</div>
+				{{/each}}
+			{{/each}}
+
+		</div> <!-- End people-list -->
+	</div> <!-- End container -->
+</section>
+<!-- End of People Listing -->

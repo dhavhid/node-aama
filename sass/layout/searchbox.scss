@@ -1,0 +1,59 @@
+.searchbox {
+	display: none;
+	float: left;
+	max-width: 272px;
+}
+
+.searchbox input, .searchbox button {
+	border-radius: 0;
+}
+
+.searchbox input {
+	background: $button-gray;
+	border: none;
+}
+
+.searchbox button {
+	color: #fff;
+	background: $darker-gray;
+	font-size: 17px;
+	padding: 4px 8px;
+}
+
+
+/* Responsive Styling */
+@media (min-width: 768px) {
+	.searchbox {
+		display: block;
+		float: right;
+    	margin-right: 2%;
+	}
+
+	.searchbox .form-control {
+		display: none;
+	    position: absolute;
+	    left: -1px;
+		top: 100%;
+		width: 150px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.searchbox {
+		//width: 40%;
+	}
+
+	.searchbox .form-control {
+		display: block;
+	    position: static;
+	    left: 0;
+		top: 0;
+		width: 100%;
+	}
+}
+
+@media (min-width: 1400px) {
+	.searchbox {
+		//width: 50%;
+	}
+}

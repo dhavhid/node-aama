@@ -1,0 +1,27 @@
+{
+  "name": "cubic-bootstrap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js",
+  "scripts": {
+    "watch:js": "watchify ./js -d -o assets/build/bundle.js",
+    "build:js": "browserify ./js -d -g [uglifyify -x .js] | exorcist assets/build/bundle.js.map > assets/build/bundle.js",
+    "build:sass": "node-sass sass/index.scss assets/build/bundle.css",
+    "build:postcss": "postcss --use autoprefixer -c css.json -o assets/build/bundle.prefixed.css assets/build/bundle.css",
+    "watch:css": "watch 'npm run build:sass && npm run build:postcss' ./sass",
+    "watch": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+    "build": "npm run build:sass && npm run build:postcss && npm run build:js"
+  },
+  "author": "",
+  "license": "none",
+  "devDependencies": {
+    "autoprefixer": "^5.1.0",
+    "bootstrap": "^3.3.4",
+    "exorcist": "^0.4.0",
+    "node-sass": "^3.0.0-alpha.0",
+    "postcss-cli": "^1.0.0",
+    "uglifyify": "^3.0.1",
+    "watch": "^0.14.0",
+    "watchify": "^2.6.0"
+  }
+}

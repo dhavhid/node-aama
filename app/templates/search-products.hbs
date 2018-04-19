@@ -1,0 +1,115 @@
+<section class="search-products">
+    <div class="container margin-tb-md">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i> </a> </li>
+                    <li><a href="/products">Certified Product Directory</a> </li>
+                    <li class="active">Search</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form name="frmSearchProducts" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Manufacturers</label>
+                        <div class="col-md-9 col-sm-7 col-xs-12">
+                            <select class="form-control" name="strManuFact" id="strManuFact">
+                                <option value="ALL">ALL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Operator Type</label>
+                        <div class="col-md-9 col-sm-7 col-xs-12">
+                            <select class="form-control" name="strProdType" id="strProdType">
+                                <option value="ALL">ALL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Performance Class</label>
+                        <div class="col-md-9 col-sm-7 col-xs-12">
+                            <select class="form-control" name="strPerfClass" id="strPerfClass">
+                                <option value="ALL">All Classes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Performance Grade</label>
+                        <div class="col-md-2 col-sm-3 col-xs-6">
+                            <select class="form-control" name="strPerfGradeEquator" id="strPerfGradeEquator">
+                                <option value="=">=</option>
+                                <option value=">=">&#8805;</option>
+                            </select>
+                        </div>
+                        <div class="col-md-7 col-sm-4 col-xs-6">
+                            <select class="form-control" name="strPerfGrade" id="strPerfGrade">
+                                <option value="ALL">ALL</option>
+                                {{#each perfGrade}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Framing Material</label>
+                        <div class="col-md-9 col-sm-7 col-xs-12">
+                            <select class="form-control" name="strFrameMat" id="strFrameMat">
+                                <option value="ALL">ALL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-5 col-xs-12">Impact Resistance: <br /><small><em>CHECK ALL THAT APPLY</em></small></label>
+                        <div class="col-md-9 col-sm-7 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="mImpact_TAS" value="1"> TAS 201/203 (the only impact test accepted in Miami-Dade and Broward Counties, FL)
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="mImpact_AAMA" value="1"> AAMA 506 (accepted outside Miami-Dade/Broward Counties, FL)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <span class="help-block">If you would like to view the entire Certified Products Directory press the Search Button.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" name="submitFrm" onclick="return window.Cubic.products.searchProducts(event);" class="button-blue" disabled><i class="fa fa-spinner fa-spin"></i> Loading options</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Product content goes here. -->
+        <div class="row">
+            <div class="col-md-12"><h3 class="manufacturer-name"></h3></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 pages text-right">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="products-content"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 pages">
+            </div>
+        </div>
+    </div>
+</section>
+<script type="application/javascript">
+    $(function(){
+        window.Cubic.products.getFilterCatalogs();
+    });
+</script>

@@ -1,0 +1,147 @@
+<section class="welcome">
+	<div class="container margin-t-lg">
+        <form action='/session/logout/' method='POST'>
+            <input class='user-logout btn' type='submit' value ='Logout' />
+        </form>
+		<h2>Welcome, {{user.strFirstName}} {{user.strLastName}}</h2>
+	</div>
+</section>
+
+<section class="notifications">
+	<div class="container margin-b-lg">
+		<h3>Notifications</h3>
+		<ul>
+			<li>Upcoming Conference Call <em>May 25, 2016</em></li>
+		</ul>
+	</div>
+</section>
+
+{{#if totalRequired}}
+    <section class="required-ballots">
+        <div class="container margin-tb-lg">
+            <h3>Survey Required Ballots</h3>
+            <ul>
+                {{#each requiredBallots}}
+                    {{#compare Survey_Link "!=" ""}}
+                        <li><a href="{{Survey_Link}}" target="_blank" title="{{name}}">{{name}}</a> </li>
+                        <p><strong>Due Date:</strong> {{duedate}}</p>
+                    {{/compare}}
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+{{/if}}
+
+{{#if totalAvailable}}
+    <section class="available-ballots">
+        <div class="container margin-tb-lg">
+            <h3>Survey Available Ballots</h3>
+            <ul>
+                {{#each availableBallots}}
+                    {{#compare Survey_Link "!=" ""}}
+                        <li><a href="{{Survey_Link}}" target="_blank" title="{{name}}">{{name}}</a> </li>
+                        <p><strong>Due Date:</strong> {{duedate}}</p>
+                    {{/compare}}
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+{{/if}}
+
+{{#if totalProductRequired}}
+    <section class="product-comment-ballots">
+        <div class="container margin-tb-lg">
+            <h3>Product Group Required Ballots</h3>
+            <ul>
+                {{#each productRequired}}
+                    {{#compare Survey_Link "!=" ""}}
+                        <li><a href="{{Survey_Link}}" target="_blank" title="{{name}}">{{name}}</a> </li>
+                        <p><strong>Due Date:</strong> {{duedate}}</p>
+                    {{/compare}}
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+{{/if}}
+
+{{#if totalProductComment}}
+    <section class="product-comment-ballots">
+        <div class="container margin-tb-lg">
+            <h3>Product Group Comment Ballots</h3>
+            <ul>
+                {{#each productComment}}
+                    {{#compare Survey_Link "!=" ""}}
+                        <li><a href="{{Survey_Link}}" target="_blank" title="{{name}}">{{name}}</a> </li>
+                        <p><strong>Due Date:</strong> {{duedate}}</p>
+                    {{/compare}}
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+{{/if}}
+
+<section class="single-sign-on">
+    <div class="container margin-tb-lg">
+        <h3>Single Sing On | RoundTable</h3>
+        <ul>
+            <li><a href="{{ssourl}}" target="_blank">Single Sign On | RoundTable</a></li>
+        </ul>
+    </div>
+</section>
+
+<hr />
+
+<section class="user-section">
+    <div class="container margin-tb-md">
+        <h3>Profile</h3>
+        <table class='user-info-table'>
+            <tr>
+                <td>Title</td>
+                <td>{{user.strTitle}}</td>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>{{user.strCompanyName}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    {{#if user.strAddressLine1}}{{user.strAddressLine1}}<br/>{{/if}}
+                    {{#if user.strAddressLine2}}{{user.strAddressLine2}}<br/>{{/if}}
+                    {{user.strCity}}, {{user.strState}} {{formatZip user.strZip}}<br/>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{user.strEmail}}</td>
+            </tr>
+            {{#if user.strPhone}}
+                <tr>
+                    <td>Phone</td>
+                    <td>{{formatPhone user.strPhone}} {{user.strPhoneExt}}</td>
+                </tr>
+            {{/if}}
+            {{#if user.strFax}}
+                <tr>
+                    <td>Fax</td>
+                    <td>{{formatPhone user.strFax}}</td>
+                </tr>
+            {{/if}}
+        </table>
+        
+        <a href='/session/user/edit' class='button-blue'>Edit Information</a>
+        {{#if allowEditBusiness}}
+            <a href="/session/business/edit" class="button-blue">Edit Business Information</a>
+        {{/if}} 
+    </div>
+</section>
+<!--<section class="recent-content">
+	<div class="container margin-tb-lg">
+		<h3>Recently Viewed Content</h3>
+		<ul>
+			<li><a href="/pages/membership-eligibility-requirements">Membership Eligibility Requirements</a></li>
+			<li><a href="/pages/maximize-your-leadership-role">Maximize Your Leadership Role</a></li>
+			<li><a href="/pages/fenestration-masters">FenestrationMasters</a></li>
+		</ul>
+	</div>
+</section>-->

@@ -1,0 +1,151 @@
+<section class="committees-section">
+    <div class="container margin-tb-lg">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li><a href="/committees">Directory of Committees</a></li>
+                    {{#exists committee.parentname}}
+                        <li><a href="/committees/{{committee.parentcode}}">{{committee.parentname}}</a></li>
+                    {{/exists}}
+                    <li class="active">{{committee.name}}</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="error col-md-12"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <h2>Overview</h2>
+            </div>
+            <div class="col-md-7 col-xs-12 text-right" style="padding-top: 20px;">
+                {{#if loggedIn}}
+                    {{#if is_member}}
+                        <button name="btnleave" class="button-blue" onclick="window.Cubic.committee.dropToCommittee(this);">Leave Committee</button>
+                        {{#if is_voter}}
+                            <button name="btnleavevoter" class="button-blue" onclick="window.Cubic.committee.updateVoter(this, 0);">Quit voting status</button>
+                        {{else}}
+                            <button name="btnbevoter" class="button-blue" onclick="window.Cubic.committee.updateVoter(this, 1);">Become a voter member</button>
+                        {{/if}}
+                    {{else}}
+                        <button name="btnjoin" class="button-blue" onclick="window.Cubic.committee.addToCommittee(this)">Join Committee</button>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="user-profile">
+                    {{committee.custom11}}
+                    <br /><br />
+                    <ul>
+                        <!--{{#compare committee.chrperson "!=" ""}}
+                            <li>Chair: {{committee.chrperson}}</li>
+                        {{/compare}}
+                        {{#compare committee.assignedto "!=" ""}}
+                            <li>Liaison: {{committee.assignedto}}</li>
+                        {{/compare}}
+                        {{#compare committee.totl_meet "!=" ""}}
+                            <li>Total meetings: {{committee.totl_meet}}</li>
+                        {{/compare}}-->
+                        {{#compare committee.comm_strt "!=" ""}}
+                            <li>Date Established: {{dateFormat committee.comm_strt "mmm dd, yyyy"}}</li>
+                        {{/compare}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#members" aria-controls="members" role="tab" data-toggle="tab">Members</a></li>
+                    <li role="presentation"><a href="#meetings" aria-controls="meetings" role="tab" data-toggle="tab">Meetings</a></li>
+                    {{#compare committee.children "!=" "0"}}
+                        <li role="presentation"><a href="#committees" aria-controls="committees" role="tab" data-toggle="tab">Committees & Task Groups</a> </li>
+                    {{/compare}}
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active elements" role="tabpanel" id="members">
+                        {{#each members}}
+                            <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                <div class="content-box">
+                                    <h2>{{fname}} {{lname}}</h2>
+                                    <div class="member-title">{{title}} at <strong>{{companyname}}</strong></div><br />
+                                    <div class="member-data">
+                                        <ul class="contact-info">
+                                            <li>Address: {{address1}} {{address2}}, {{city}}, {{state}}, {{formatZip zip}}</li>
+                                            {{#compare phone "!=" ""}}
+                                                <li>Phone: {{formatPhone phone}}</li>
+                                            {{/compare}}
+                                            {{#compare fax "!=" ""}}
+                                                <li>Fax: {{formatPhone fax}}</li>
+                                            {{/compare}}
+                                        </ul>
+                                        <br />
+                                        {{#compare url "!=" ""}}
+                                            <a href="http://{{url}}" target="_blank" title="{{url}}"><i class="fa fa-2x fa-link"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{/compare}}
+                                        {{#compare email "!=" ""}}
+                                            <a href="mailto:{{email}}" target="_blank" title="{{email}}"><i class="fa fa-2x fa-envelope-o"></i> </a>
+                                        {{/compare}}
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div> <!-- end of members -->
+                    <div class="tab-pane elements" role="tabpanel" id="meetings">
+                        {{#each meetings}}
+                            <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                <div class="content-box">
+                                    <h2>{{descript}}</h2>
+                                    <div class="member-title">
+                                        {{dateFormat meetdate "mmm dd, yyyy"}} {{#compare meettime "!=" ""}}{{meettime}}{{/compare}}
+                                        {{#compare meetpl "!=" ""}} at <strong>{{meetpl}}</strong>{{/compare}}
+                                    </div>
+                                    <div class="member-data">
+                                        <ul class="contact-info">
+                                            <li>Attendance: {{totl_att}}</li>
+                                            <li>Roster: {{totl_rostr}}</li>
+                                        </ul>
+                                        {{#if has_attachment}}
+                                            <br />
+                                            <a href="http://aamanet.org{{meetattach}}" title="Minute Report"><i class="fa fa-2x fa-file-word-o"></i></a>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    {{#compare committee.children "!=" "0"}}
+                        <div class="tab-pane elements" role="tabpanel" id="committees"></div>
+                    {{/compare}}
+                </div>
+            </div>
+        </div> <!-- end of tabs -->
+    </div>
+</section>
+<input type="hidden" name="committeecode" value="{{committee.comcode}}">
+<input type="hidden" name="intMcom_Id" value="{{committee.mcom_id}}">
+<script type="text/javascript">
+    $(function(){
+        {{#compare committee.children "!=" "0"}}
+            window.Cubic.committee.getCommitteesByHierarchy('{{committee.custom01}}','committees','{{committee.name}}');
+        {{/compare}}
+        var $masonry = new window.Cubic.Masonry('#members', {
+            columnWidth  : '.item',
+            itemSelector : '.item'
+        });
+    });
+    $('a[data-toggle=tab]').each(function () {
+        var $this = $(this);
+        var container = $this.attr('aria-controls');
+        $this.on('shown.bs.tab', function () {
+            var $masonry = new window.Cubic.Masonry('#' + container, {
+                columnWidth  : '.item',
+                itemSelector : '.item'
+            });
+        });
+    });
+</script>

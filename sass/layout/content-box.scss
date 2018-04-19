@@ -1,0 +1,46 @@
+.content-box {
+  color: #7e9bb6;
+  font-size: 0.9em;
+  background: #ecebe8;
+  padding: 1.1em;
+  margin: 1em 0;
+}
+.content-box a {
+  color: #7393b3;
+}
+.content-box:hover {
+  background: #c0dbf9;
+}
+.content-box:hover a{
+  color: #8aa8c7;
+}
+.member-rol{
+  list-style: none;
+  color: #fff;
+  font-size: 0.9em;
+  background: #7393b3;
+  padding: 0.5em;
+  margin: 0.3em;
+  display: inline-block;
+}
+.member-title {
+  font-style: italic;
+  font-size: 1.1em;
+}
+.member-data {
+  font-size: 0.9em;
+}
+.content-box h2 {
+  color: #7494b2;
+  margin-bottom: 5px;
+}
+.content-box ul.contact-info {
+  padding-left:0px;
+}
+.content-box ul.contact-info li {
+  list-style: none;
+}
+.staff-box,
+.staff-box a {
+  color: #676a6c !important;
+}

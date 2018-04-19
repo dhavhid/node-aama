@@ -1,0 +1,29 @@
+.faq-section h2, h3 {
+	color: $logo-blue;
+}
+
+.faq-category-input {
+    text-align: center;
+    border-color: $light-gray;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    padding: 2em 0;
+    margin: 2em 0;
+}
+
+.faq-category-input .form-group {
+	margin: 0;
+}
+
+.faq-category-input .form-group label {
+	text-transform: uppercase;
+}
+
+.faq-category-input .form-group .form-control {
+	display: inline-block;
+	width: 35%;
+}
+
+.faq {
+	margin: 2% 0px 5% 0;
+}

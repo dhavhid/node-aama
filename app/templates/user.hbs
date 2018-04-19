@@ -1,0 +1,50 @@
+<section class="user-section">
+	<div class="container margin-tb-md">
+		<h1>
+			<form action='/session/logout/' method='POST'>
+				<input class='user-logout btn' type='submit' value ='Logout' />
+			</form>
+			Welcome {{user.strFirstName}} {{user.strLastName}}
+		</h1>
+		
+		<table class='user-info-table'>
+			<tr>
+				<td>Title</td>
+				<td>{{user.strTitle}}</td>
+			</tr>
+			<tr>
+				<td>Company</td>
+				<td>{{user.strCompanyName}}</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>
+					{{#if user.strAddressLine1}}{{user.strAddressLine1}}<br/>{{/if}}
+					{{#if user.strAddressLine2}}{{user.strAddressLine2}}<br/>{{/if}}
+					{{user.strCity}}, {{user.strState}} {{formatZip user.strZip}}<br/>
+				</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{user.strEmail}}</td>
+			</tr>
+			{{#if user.strPhone}}
+				<tr>
+					<td>Phone</td>
+					<td>{{formatPhone user.strPhone}} {{user.strPhoneExt}}</td>
+				</tr>
+			{{/if}}
+			{{#if user.strFax}}
+				<tr>
+					<td>Fax</td>
+					<td>{{formatPhone user.strFax}}</td>
+				</tr>
+			{{/if}}
+		</table>
+		
+		<a href='/session/user/edit' class='button-blue'>Edit Information</a>
+		{{#if allowEditBusiness}}
+			<a href="/session/business/edit" class="button-blue">Edit Business Information</a>
+		{{/if}}	
+	</div>
+</section>

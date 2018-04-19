@@ -1,0 +1,135 @@
+// General banner styling
+.banner {
+	//min-height: 550px;
+	min-height: 250px;
+	width: 100%;
+	color: white;
+	position:relative;
+	background:#333;
+	padding-top: 5em;
+	
+	h2, h5 {
+		color:#fff;
+		text-transform: uppercase;
+	}
+}
+
+.banner .banner-img {
+	position: absolute;
+	background-size: 100%;
+	background-size: cover;
+	background-attachment: relative;
+	background-position: center center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+}
+
+// Banner Images
+.blog-banner .banner-img {
+	background-image: url(../images/blog-banner.jpg);
+}
+
+.static-banner .banner-img {
+	background-image: url(../images/static-banner.jpg);
+}
+
+
+// Banner Headings
+.banner-textbox {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+	transform: translateY(-50%);
+    text-align: right;
+}
+
+.banner-textbox .banner-heading {
+    font-size: 1.5em;
+    text-align: right;
+    color: #FFF;
+    font-weight: normal;
+}
+
+.banner-textbox span {
+    display: inline;
+    background: rgba(125, 160, 195, 0.7) none repeat scroll 0% 0%;
+    line-height: 1.5;
+	padding: 1.5px 0.5em 0px;
+}
+
+.banner-textbox span:last-child {
+	padding-bottom: 14px;
+}
+
+.banner-textbox .learn-more {
+    margin-right: 3em;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 1.75em;
+    display: inline-block;
+    margin-top: 1em;
+    font-weight: 300;
+}
+
+.blog-banner h2 {
+	font-size: 2.5em;
+	position: relative;
+	margin: 7% 0%;
+	padding: 0.5em 1.5em 0.5em 1em;
+	background: rgba(124,160,196,0.8);
+	display: inline-block;
+	text-transform: none;
+	float: right;
+	font-weight: 300;
+}
+
+.blog-banner h2 a {
+	color: #fff;
+	outline: none;
+}
+
+.blog-banner h2 a:hover {
+	color: $gray;
+	text-decoration: none;
+}
+
+
+// Responsive
+@media (min-width: 600px) {
+	.banner {
+		padding-top: 0;
+	}
+	
+	.banner-textbox .banner-heading {
+		font-size: 3em;
+	}
+
+	.banner-textbox span {
+		padding: 5px 0.5em 0px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.banner-textbox {
+		top: 45%;
+	}
+
+	.banner-textbox .banner-heading {
+		font-size: 4em;
+	}
+
+	.banner-textbox span {
+		line-height: 1.625;
+		padding: 14px 1.4em 0px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.banner-textbox span {
+		line-height: 1.59;
+		padding: 14px 1.4em 0px;
+	}
+}

@@ -1,0 +1,18 @@
+ul.product-info li {
+  list-style-type: square;
+}
+ul.product-info ul li {
+  list-style-type: circle;
+}
+li.has-product-detail {
+  list-style-type: none !important;
+}
+.products-table {
+  width:100%;
+  border: 0px none transparent;
+  border-collapse: collapse;
+}
+.products-table td {margin: 7px; border-bottom: 1px solid #ccc;}
+.products-table li {list-style: square;}
+.pagination {margin: 0px !important;}
+.products-content {margin-bottom: 10px;}

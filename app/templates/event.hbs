@@ -1,0 +1,162 @@
+<!-- Event Listing -->
+<section class="event-section">
+	<div class="container margin-tb-md">
+
+		<div class="events-entry">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i></a></li>
+                <li><a href="/events">Events</a></li>
+                <li class="active">{{event.event}}</li>
+            </ol>
+        </div>
+		{{#with event}}
+			<input type="hidden" name="eventId" id="eventId" value="{{mfun_id}}">
+			<div class='events-entry'>
+				<div class='event-date'>
+					{{#compare startdate "==" enddate}}
+						{{dateFormat startdate "mmm dd, yyyy"}}
+					{{/compare}}
+					{{#compare startdate "!=" enddate}}
+						{{dateFormat startdate "mmm dd, yyyy"}} &mdash; {{dateFormat enddate "mmm dd, yyyy"}} 
+                        {{#compare cancelled "==" "false"}}
+                            &nbsp;&nbsp; <a title="Add to calendar" href="/events/{{cale_id}}/{{event}}.ics"><i class="fa fa-calendar-plus-o"></i></a>
+                        {{/compare}}
+					{{/compare}}
+				</div>
+				<h1 class='event-title'>{{event}}</h1>
+
+				{{#if isPast}}
+					<p class='event-cancelled'>This event has passed.</p>
+				{{else}}
+					{{#compare cancelled "!=" "false"}}
+						<p class='event-cancelled'>This event was canceled</p>
+					{{/compare}}
+				{{/if}}
+
+				{{#if category}}{{/if}}
+                {{#compare spon1id "!=" "0"}}
+                    <div class="event-sponsors">
+                        <h2>Event Sponsors</h2>
+                        <div class="sponsor-container">
+                            {{#compare spon1id "!=" "0"}}
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xxs-12 sponsor-logo-container">
+                                    {{#compare spon1logo "!=" ""}}
+                                        <a href="http://{{spon1url}}" target="_blank"><img src="http://events.aamanet.org{{spon1logo}}" title="{{spon1name}}" class="img-responsive" border="0"></a>
+                                    {{/compare}}
+                                </div>
+                            {{/compare}}
+                            {{#compare spon2id "!=" "0"}}
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xxs-12 sponsor-logo-container">
+                                    {{#compare spon2logo "!=" ""}}
+                                        <a href="http://{{spon2url}}" target="_blank"><img src="http://events.aamanet.org{{spon2logo}}" title="{{spon2name}}" class="img-responsive" border="0"></a>
+                                    {{/compare}}
+                                </div>
+                            {{/compare}}
+                            {{#compare spon3id "!=" "0"}}
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xxs-12 sponsor-logo-container">
+                                    {{#compare spon3logo "!=" ""}}
+                                        <a href="http://{{spon3url}}" target="_blank"><img src="http://events.aamanet.org{{spon3logo}}" title="{{spon3name}}" class="img-responsive" border="0"></a>
+                                    {{/compare}}
+                                </div>
+                            {{/compare}}
+                            {{#compare spon4id "!=" "0"}}
+                                <div class="col-md-3 col-sm-3 col-xs-3 col-xxs-12 sponsor-logo-container">
+                                    {{#compare spon4logo "!=" ""}}
+                                        <a href="http://{{spon4url}}" target="_blank"><img src="http://events.aamanet.org{{spon4logo}}" title="{{spon4name}}" class="img-responsive" border="0"></a>
+                                    {{/compare}}
+                                </div>
+                            {{/compare}}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <hr />
+                {{/compare}}
+				<h2>Event Details</h2>
+				<div class='event-description well'>
+					{{{descript}}}
+					<p><a href='/event-sponsorship' class='button-blue' style='color:#fff !important;'>Sponsorship Opportunities</a></p>
+				</div>
+                <hr />
+				<h2>Hotel Information</h2>
+				<div class='event-registration'>
+					<div class='event-hotel'>
+						<div>{{location}}</div>
+						<div>{{address}}</div>
+						<div>{{city}}, {{state}}</div>
+					</div>
+				</div>
+
+				<!-- TODO: Registration options should be turned off for past events -->
+                <hr />
+				<div class='event-options'>
+					<h2>Registration</h2>
+                    <div class="addToCartResponse"></div>
+					<table class='table table-striped event-attendees-table table-condensed'>
+						<tbody>
+							<tr>
+								<td>Member Price</td>
+								<td>{{membcost}}</td>
+							</tr>
+							</tr>
+								<td>Non-Member Price</td>
+								<td>{{nonmemcost}}</td>
+						</tbody>
+					</table>
+					{{#if ../loggedIn}}
+                        <button class="button-blue" id="btn_addMembToCart" onclick="window.Cubic.cart.addEventToCart();">Add To Cart</button>
+    					<div class='event-options-list text-center'>
+    						<i class="fa fa-2x fa-spinner fa-pulse"></i> <h4>Loading add-ons</h4>
+    					</div>                
+    					<button class="button-blue" style="display: none;" id="btn_addToCart" onclick="window.Cubic.cart.evAddToCart();">Add Add-ons To Cart</button>
+                        <button class="button-blue" style="display: none;" id="btn_goToCart" onclick="window.location = '/cart';">No thank you. Check out now.</button>
+                    {{/if}}    
+				</div>
+                <hr />
+				<div class='event-attendees'>
+					<h2>Event Attendees</h2>
+                    <div id="attendees">
+                        {{#each ../attendees}}
+                            <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                <div class="content-box">
+                                    <h2><a href="/members/business/member/{{rep_id}}">{{name}}</a></h2>
+                                    {{#compare company "!=" ""}}
+                                        <div class="member-title"><a href="/members/business/{{id}}">{{company}}</a></div>
+                                    {{/compare}}
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+				</div>
+			</div>
+		{{/with}}
+
+	</div>
+</section>
+<script>
+	// Wrap this code in a jQuery ready function. The Cubic global does not exist yet.
+	jQuery(function($) {
+        {{#if loggedIn}}
+		  window.Cubic.cart.getEventOptions({{event.import_id}},0);
+        {{/if}}  
+        var $masonry = new window.Cubic.Masonry('#attendees', {
+            columnWidth  : '.item',
+            itemSelector : '.item'
+        });
+		// Clean up SBA inline styling
+		$('.event-description font[color=#ff0000]').attr("color", "#7ca0c4") // Change red headings to AAMA blue
+		$('.event-description div *:empty').parent().hide() // Remove empty spacing
+		$('.event-description div').each(function(){	// Remove almost empty divs
+			var html = $(this).html();
+
+			if (! html || html == ' ' || html == '&nbsp;')
+				$(this).hide();
+		});
+        var imgs = $('img');
+        $.each(imgs, function(index,item){
+            var item = $(item);
+            item.attr('src',item.attr('src').replace('\\','/'));
+        });
+	});
+</script>
+
+<!-- End of Events Listing -->

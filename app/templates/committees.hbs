@@ -1,0 +1,109 @@
+<section class="committees-section">
+    <div class="container margin-tb-lg">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Directory of Committees</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#committees" aria-controls="committees" role="tab" data-toggle="tab">All Committees</a></li>
+                    <li role="presentation"><a href="#councils" aria-controls="councils" role="tab" data-toggle="tab">Councils</a> </li>
+                    <li role="presentation"><a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">My Membership ({{intMyCommittees}})</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane elements" role="tabpanel" id="membership">
+                        {{#if error}}
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <br />
+                                    {{{message}}}
+                                    <br />
+                                </div>
+                            </div>
+                        {{else}}
+                            {{#each MyCommittees}}
+                                <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                    <div class="content-box">
+                                        <h4><a href="javascript:$('#frmm{{mcom_id}}').submit();">{{name}}</a></h4>
+                                        {{#compare voter "==" "true"}}
+                                            <div class="member-rol">Voter</div>
+                                        {{else}}
+                                            <div class="member-rol">Corresponding Member</div>
+                                        {{/compare}}
+                                        <div class="clearfix"></div>
+                                        <form id="frmm{{mcom_id}}" method="post" action="/committees/{{comcode}}">{{#json2form this}}{{this}}{{/json2form}}</form>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                    <div class="tab-pane active elements" role="tabpanel" id="committees">
+                        <br />
+                        <div class="committees-container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="button-blue" href="/pages/maximize-your-leadership-role">Leadership Orientation</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="pages text-right"></div>
+                                </div>
+                            </div>
+                            <div class="row" id="all-committees"></div>
+                            <div class="row">
+                                <div class="col-md-12 pages text-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="councils">
+                        <div class="committees-container">
+                            <div class="row" id="councils"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function() {
+            window.Cubic.committee.getAllCommittees(1);
+            window.Cubic.committee.getCommitteesByHierarchy('COUNCIL','councils');
+        }, 1000);
+        if (window.history && window.history.pushState) {
+            $(window).on('popstate', function() {
+                var hashLocation = location.hash;
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1];
+
+                if (hashName !== '') {
+                    var hash = window.location.hash;
+                    if (hash === '') {
+                        window.Cubic.committee.ajaxRequest = 1;
+                    }
+                }
+            });
+        }
+        var $masonry = new window.Cubic.Masonry('#membership', {
+            columnWidth  : '.item',
+            itemSelector : '.item'
+        });
+    });
+    $('a[data-toggle=tab]').each(function () {
+        var $this = $(this);
+        var container = $this.attr('aria-controls');
+        if (container == 'committees') container = 'all-committees';
+        $this.on('shown.bs.tab', function () {
+            var $masonry = new window.Cubic.Masonry('#' + container, {
+                columnWidth  : '.item',
+                itemSelector : '.item'
+            });
+        });
+    });
+</script>

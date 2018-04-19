@@ -1,0 +1,70 @@
+<!-- Frequently Asked Questions -->
+<section class="faq-section">
+	<div class="container margin-tb-xl">
+		<div class="row">
+			<div class="col-md-12">
+				<ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li class="active">FAQs</li>
+                </ol>
+			</div>
+		</div>
+		<div class="faq-intro">
+			<p>Select a topic to review answers to our most commonly asked questions related to membership, events, certification, publications, continuing education, general window advice, and more. Didn't find your answer here? Visit the Contact Us page and send your question via email. A response will be provided within two business days from the date the request is received.</p>
+		</div>
+
+		<div class="faq-category-input">
+			<!--<span>Browse by category:</span>-->
+			<form role="form" action="/faq/">
+				<div class="form-group">
+					<label for="sel1">Browse by category:</label>
+					<select class="form-control" id="sel1">
+						{{#each categories}}
+							<option {{selected ../category name}}>{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+			</form>
+		</div>
+
+		<h3>{{category}} Frequently Asked Questions</h3>
+
+		{{#if post}}
+			<div class="faq-list">
+
+				{{#each post}}
+					<div class="faq">
+						<div class="question">
+							<strong>{{title}}</strong>
+						</div>
+
+						<div class="answer">
+							<p>{{{content}}}</p>
+						</div>
+					</div>
+				{{/each}}
+
+			</div> <!-- End faq-list -->
+		{{/if}}
+
+	</div> <!-- End container -->
+</section>
+<!-- End of Frequently Asked Questions -->
+
+<script type="text/javascript">
+	jQuery(function($) {
+		$(".faq-category-input").change(function() {
+			selection = $(".form-control option:selected").text();
+			selection = kebabCase(selection);
+			$("form").attr('action','/faq/'+selection);
+			$("form").submit();
+		})
+
+		function kebabCase(str) {
+			var kebab = str;
+			kebab = kebab.toLowerCase();
+			kebab = kebab.replace(/ /g,"-");
+			return kebab;
+		}
+	})
+</script>

@@ -1,0 +1,9 @@
+.ENV
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+notes
+.DS_Store
+node_modules/
+.idea/

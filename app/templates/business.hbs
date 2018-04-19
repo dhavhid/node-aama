@@ -1,0 +1,230 @@
+<!-- Business Info -->
+<section class="business-section">
+    <div class="container margin-tb-md">
+
+        <div class="business-entry">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i></a></li>
+                <li><a href="/members">Member Directory</a></li>
+                <li class="active">{{title}}</li>
+            </ol>
+        </div>
+        {{#compare business.Weblogourl "!=" ""}}
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="http://events.aamanet.org{{business.Weblogourl}}" width="180px" title="{{title}}">
+                </div>
+            </div>
+        {{/compare}}
+        <div class="row">
+            <div class="col-md-12"><h2>Overview</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class='user-profile'>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 col-xxs-12">
+                            <p>{{{business.BusinessDescription}}}</p><br />
+                            <ul class="business-details-list">
+                                {{#compare business.Custom17 "!=" "PT"}}
+                                    {{#compare business.InfoEmail_Id "!=" "0"}}
+                                        {{#compare business.InfoEmail.Email_Address "!=" ""}}
+                                            <li><em>Email:</em> <strong><a href="mailto:{{business.InfoEmail.Email_Address}}">{{business.InfoEmail.Email_Address}}</a></strong></li>
+                                        {{/compare}}
+                                    {{/compare}}
+                                    {{#compare business.Phone1_Id "!=" "0"}}
+                                        <li><em>Phone:</em> <strong>{{formatPhone business.Phone1.Phone}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare business.Phone2_Id "!=" "0"}}
+                                        <li><em>Alternative Phone:</em> <strong>{{formatPhone business.Phone2.Phone}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare business.Info_Id "!=" "0"}}
+                                        <li><em>Info Phone:</em> <strong>{{formatPhone business.InfoPhone.Phone}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare business.Fax_Id "!=" "0"}}
+                                        <li><em>Fax:</em> <strong>{{formatPhone business.Fax.Phone}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare business.WebSite_Id "!=" "0"}}
+                                        <li><em>Website:</em> <strong><a href="http://{{business.WebSite.Url}}" target="_blank">{{business.WebSite.Url}}</a></strong></li>
+                                    {{/compare}}
+                                    {{#compare business.JobSite_Id "!=" "0"}}
+                                        <li><em>Jobs Website:</em> <strong><a href="http://{{business.JobSite.Url}}" target="_blank">{{business.JobSite.Url}}</a></strong></li>
+                                    {{/compare}}
+                                    {{#compare business.MailAddr_Id "!=" "0"}}
+                                        <li><em>Mailing Address:</em> <strong>{{business.MailingAddress.Address1}} {{business.MailingAddress.Address2}}, {{business.MailingAddress.City}}, {{business.MailingAddress.State}}, {{formatZip business.MailingAddress.Zip}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare business.PhyAddr_Id "!=" "0"}}
+                                        <li><em>Physical Address:</em> <strong>{{business.PhysicalAddress.Address1}} {{business.PhysicalAddress.Address2}}, {{business.PhysicalAddress.City}}, {{business.PhysicalAddress.State}}, {{formatZip business.PhysicalAddress.Zip}}</strong></li>
+                                    {{/compare}}
+                                {{/compare}}
+                                {{#compare business.Custom17 "==" "PT"}}
+                                    {{#compare mainRep.email "!=" ""}}
+                                        <li><em>Email:</em> <strong>{{mainRep.email}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare mainRep.phone1 "!=" ""}}
+                                        <li><em>Phone:</em> <strong>{{formatPhone mainRep.phone1}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare mainRep.phone2 "!=" ""}}
+                                        <li><em>Alternative Phone:</em> <strong>{{formatPhone mainRep.phone2}}</strong></li>
+                                    {{/compare}}
+                                    {{#compare mainRep.fax "!=" ""}}
+                                        <li><em>Fax:</em> <strong>{{formatPhone mainRep.fax}}</strong></li>
+                                    {{/compare}}
+                                    <li><em>Mailing Address:</em> <strong>{{mainRep.mail_address1}} {{mainRep.mail_address2}}, {{mainRep.mail_city}}, {{mainRep.mail_state}}, {{formatZip mainRep.mail_zip}}</strong></li>
+                                {{/compare}}
+                            </ul>
+                            <div class="">
+                                {{#compare business.twitter "!=" ""}}
+                                    <a href="{{business.twitter}}" target="_blank"><span class="fa fa-twitter"></span> </a>
+                                {{/compare}}
+                                {{#compare business.facebook "!=" ""}}
+                                    <a href="{{business.facebook}}" target="_blank"><span class="fa fa-facebook"></span> </a>
+                                {{/compare}}
+                                {{#compare business.linkedin "!=" ""}}
+                                    <a href="{{business.linkedin}}" target="_blank"><span class="fa fa-linkedin"></span> </a>
+                                {{/compare}}
+                                {{#compare business.youtube "!=" ""}}
+                                    <a href="{{business.youtube}}" target="_blank"><span class="fa fa-youtube"></span> </a>
+                                {{/compare}}
+                                {{#compare business.googleplus "!=" ""}}
+                                    <a href="{{business.googleplus}}" target="_blank"><span class="fa fa-google-plus"></span> </a>
+                                {{/compare}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if allowEditBusiness}}
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="button-blue" href="/session/business/edit">Edit Information</a>
+                </div>
+            </div>
+        {{/if}}
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    {{#if totalEvents}}
+                        <li role="presentation" class="active"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Event Sponsorship</a></li>
+                    {{/if}}
+                    {{#if loggedIn}}
+                        {{#if totalMembers}}
+                            {{#if totalEvents}}
+                                <li role="presentation"><a href="#members" aria-controls="members" role="tab" data-toggle="tab">Members</a></li>
+                            {{else}}
+                                <li role="presentation" class="active"><a href="#members" aria-controls="members" role="tab" data-toggle="tab">Members</a></li>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}    
+                    {{#if totalPrograms}}
+                        <li role="presentation"><a href="#programs" aria-controls="programs" role="tab" data-toggle="tab">Certification Program Participation</a></li>    
+                    {{/if}}
+                    {{#if loggedIn}}
+                        {{#if totalCFA}}
+                            <li role="presentation"><a href="#cfa" aria-controls="cfa" role="tab" data-toggle="tab">Fenestration Associates</a></li>
+                        {{/if}}
+                        {{#if totalCFM}}
+                            <li role="presentation"><a href="#cfm" aria-controls="cfm" role="tab" data-toggle="tab">Fenestration Masters</a></li>
+                        {{/if}}
+                    {{/if}}
+                </ul>
+                <div class="tab-content">
+                    {{#if totalEvents}}
+                        <div class="tab-pane active elements" role="tabpanel" id="events">
+                            {{#each events}}
+                                <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                    <div class="content-box">
+                                        <a href="/events/{{eventid}}"><h2>{{eventname}}</h2></a>
+                                        <div class="member-title">{{acessoryname}}</div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    {{#if loggedIn}}
+                        {{#if totalEvents}}
+                        <div class="tab-pane elements" role="tabpanel" id="members">
+                        {{else}}
+                        <div class="tab-pane active elements" role="tabpanel" id="members">
+                        {{/if}}
+                            {{#each members}}
+                                <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                    <div class="content-box">
+                                        <h2><a href="/members/business/member/{{rep_id}}">{{fname}}{{#compare mi "!=" ""}} {{mi}}{{/compare}} {{lname}}{{#compare annotation "!=" ""}}, {{annotation}}{{/compare}}</a></h2>
+                                        {{#compare title "!=" ""}}
+                                            <div class="member-title">{{title}}</div>
+                                        {{/compare}}
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/if}}    
+                        {{#if totalPrograms}}
+                            <div class="tab-pane elements" role="tabpanel" id="programs">
+                                {{#each programs}}
+                                    <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                        <div class="content-box">
+                                            <h2>{{programName}}</h2>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    {{#if loggedIn}}    
+                        {{#if totalCFA}}
+                            <div class="tab-pane elements" role="tabpanel" id="cfa">
+                                {{#each cfa}}
+                                    <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                        <div class="content-box">
+                                            <h2><a href="/members/business/member/{{rep_id}}">{{fname}}{{#compare mi "!=" ""}} {{mi}}{{/compare}} {{lname}}</a></h2>
+                                            {{#compare title "!=" ""}}
+                                                <div class="member-title">{{title}}</div>
+                                            {{/compare}}
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>    
+                        {{/if}}
+                        {{#if totalCFM}}
+                            <div class="tab-pane elements" role="tabpanel" id="cfm">
+                                {{#each cfm}}
+                                    <div class="col-sm-6 col-xs-6 col-xxs-12 item">
+                                        <div class="content-box">
+                                            <h2><a href="/members/business/member/{{rep_id}}">{{fname}}{{#compare mi "!=" ""}} {{mi}}{{/compare}} {{lname}}</a></h2>
+                                            {{#compare title "!=" ""}}
+                                                <div class="member-title">{{title}}</div>
+                                            {{/compare}}
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>    
+                        {{/if}}
+                    {{/if}}
+                </div> <!-- end of tab content -->
+            </div> <!-- end of col-md-12 -->
+        </div> <!-- end of row -->
+    </div>
+</section>
+<script type="text/javascript">
+    $(function(){
+        var ele = $('li.active a').attr('aria-controls');
+        if (ele) {
+            var $masonry = new window.Cubic.Masonry('#' + ele, {
+                columnWidth  : '.item',
+                itemSelector : '.item'
+            });
+        }
+    });
+    $('a[data-toggle=tab]').each(function () {
+        var $this = $(this);
+        var container = $this.attr('aria-controls');
+        $this.on('shown.bs.tab', function () {
+            var $masonry = new window.Cubic.Masonry('#' + container, {
+                columnWidth  : '.item',
+                itemSelector : '.item'
+            });
+        });
+    });
+</script>

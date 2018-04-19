@@ -1,0 +1,200 @@
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+<!-- What's New -->
+<section class="new-products">
+	<div class="container margin-tb-lg">
+		<h2>What's new</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>News</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="assets/images/product1.jpg" alt="Product 1">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>AAMA Member Joe Smith Wins National Award</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>Featured Class</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="assets/images/product2.jpg" alt="Product 2">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>Name of Featured Class</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="box">
+					<h5>News</h5>
+					<div class="row no-gutters">
+						<div class="col-sm-4">
+							<img class="img-responsive" src="assets/images/product1.jpg" alt="Product 1">
+						</div>
+
+						<div class="col-sm-8 col-padding">
+							<h4>AAMA Member Joe Smith Wins National Award</h4>
+							<a class="read-more" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="read-all" href="#">Read More ></a>
+	</div>
+</section>
+<!-- End of What's New -->
+
+
+<!-- Directory Strip -->
+<section class="search-directory">
+	<a href="#">
+		<div class="strip">
+			<div class="row">
+				<div class="column-768-three-fourth column-1000-five-sixth">
+					<p>Click here to search our full directory of AAMA Certified Products.</p>
+				</div>
+
+				<div class="column-768-fourth column-1000-sixth">
+					<button class="button-blue">Click Here <i class="glyphicon glyphicon-arrow-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</a>
+</section>
+<!-- End of Directory Strip -->
+
+<section class="twitter-feed">
+	<div class="container margin-tb">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-6 hidden-xs">
+				<h3 style="color:#7f7f73;">TWITTER FEED</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="green-box">
+					<img src="/assets/images/homepage-ad.png" class="image-box" title="Become an AAMA member today">
+					<p>Make the most of your<br />
+					business. Become an AAMA<br />
+					member today.</p>
+					<button class="button-green" onclick="window.location.href='/pages/join-us';">Click Here <i class="glyphicon glyphicon-arrow-right"></i></button>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<h3 class="visible-xs" style="color:#7f7f73;">TWITTER FEED</h3>
+				<div id="timeline"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section><div style="clear:both;"></div></section>
+
+<!-- Recent News -->
+<section class="recent-news">
+	<div class="container margin-tb-xl">
+		<div class="row">
+			<h2 style="padding: 0px 15px;"><a href="/blog">News</a></h2>
+			{{#each news}}
+				<div class="col-md-4">
+					<div class="blog-post">
+						<span class="post-date">{{dateFormat publishDate "mmmm d, yyyy"}}</span>
+						<a href="/blog/{{id}}"><h4>{{title}}</h4></a>
+						{{#if images.featuredImage}}
+							<img src="{{images.featuredImage.data.thumb}}" alt="Thumbnail" class="post-thumb img-responsive">
+						{{/if}}
+						<p>{{excerpt content 55}}</p>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</section>
+<!-- End of Recent News -->
+
+
+<!-- Become Member Strip -->
+<section class="become-member">
+	<div class="row no-gutters">
+		<div class="col-sm-7">
+			<div class="green-box">
+				<p>Make the most of your business.<br>
+				Become an AAMA member today.</p>
+				<button class="button-green" onclick="window.location.href='/pages/join-us';">Click Here <i class="glyphicon glyphicon-arrow-right"></i></button>
+			</div>
+		</div>
+
+		<div class="col-sm-5">
+			<div class="image-box"><div class="member-image"></div></div>
+		</div>
+	</div>
+</section>
+<!-- End of Become Member Strip -->
+
+
+<script type="text/javascript">
+	$(function() {
+		setTimeout(function() {
+				twttr.widgets.createTimeline({
+				sourceType: "profile",
+				screenName: "aamainfo"
+			},
+			document.getElementById('timeline'),
+			{
+				width: '100%',
+				height: '400',
+				cards: 'hidden',
+				showReplies: false,
+				tweetLimit: 4,
+				linkColor: '#8cb93b',
+				chrome: 'noheader nofooter noborders'
+			}).then(function (el) {
+				console.log("Embedded a timeline.")
+			});
+		},1000);
+		setTimeout(function() {
+			var iframe = $('#timeline iframe').contents();
+			var body = iframe.find('body');
+			body.find('li.timeline-TweetList-tweet').each(function(index) {
+				$(this).css('border','2px dashed #7b727e');
+			});
+			$('#timeline iframe').css('width','100%');
+			setTimeout(function() {
+				var iFrameID = document.getElementById('twitter-widget-0');
+				if(iFrameID) {
+					// here you can make the height, I delete it first, then I make it again
+					iFrameID.height = "";
+					$('#timeline').css('height',(parseFloat(iFrameID.contentWindow.document.body.scrollHeight) - 10) + "px").css('border-bottom','2px dashed #7b727e');
+				}
+			}, 50);
+		}, 3000);
+	});
+</script>

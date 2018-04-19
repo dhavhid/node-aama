@@ -1,0 +1,90 @@
+<section class="member-section">
+    <div class="container margin-tb-md">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li><a href="/members">Member Directory</a></li>
+                    <li><a href="/members/business/{{profile.Company._Memb_Id}}">{{profile.Company.Name}}</a></li>
+                    <li class="active">{{profile.FirstName}} {{profile.LastName}}</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><h2>Overview</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="user-profile">
+                    {{#compare profile.Picture_Url "!=" ""}}
+                        <img src="http://members.aamanet.org{{profile.Picture_Url}}" width="180px"><br />
+                    {{/compare}}
+                    {{#compare profile.Picture_Url "==" ""}}
+                        {{#compare mpdlookup "!=" ""}}
+                            <img src=" http://members.aamanet.org{{mpdlookup}}" width="180px"><br />
+                        {{/compare}}
+                        {{#compare mpdlookup "==" ""}}
+                            <img src="/assets/images/member-avatar.jpg" width="100px" align="left" style="margin-right: 5px;">
+                        {{/compare}}
+                    {{/compare}}
+                    <p><strong>{{profile.FirstName}} {{profile.LastName}}{{#compare profile.Annotation "!=" ""}}, {{profile.Annotation}}{{/compare}}</strong><br />
+                    {{#compare profile.Title "!=" ""}}
+                        {{profile.Title}}<br />
+                    {{/compare}}</p>
+                    <div class="clearfix"></div>
+                    {{#if loggedIn}}
+                        <!-- Show contact information -->
+                        <br/>
+                        <ul>
+                            {{#compare profile.Phone1_Id "!=" "0"}}
+                                <li>Phone: {{formatPhone profile.Phone1.Phone}}</li>
+                            {{/compare}}
+                            {{#compare profile.Phone2_Id "!=" "0"}}
+                                <li>Alternative Phone: {{formatPhone profile.Phone2.Phone}}</li>
+                            {{/compare}}
+                            {{#compare profile.Fax_Id "!=" "0"}}
+                                <li>Fax: {{formatPhone profile.Fax.Phone}}</li>
+                            {{/compare}}
+                            {{#compare profile.Email_Id "!=" "0"}}
+                                <li>Email: <a href="mailto:{{profile.Email.Email_Address}}">{{profile.Email.Email_Address}}</a></li>
+                            {{/compare}}
+                            {{#compare profile.twitter "!=" ""}}
+                                <li>Twitter: <a href="{{profile.twitter}}" target="_blank">{{profile.twitter}}</a></li>
+                            {{/compare}}
+                            {{#compare profile.facebook "!=" ""}}
+                                <li>Facebook: <a href="{{profile.facebook}}" target="_blank">{{profile.facebook}}</a> </li>
+                            {{/compare}}
+                            {{#compare profile.linkedin "!=" ""}}
+                                <li>LinkedIn: <a href="{{profile.linkedin}}" target="_blank">{{profile.linkedin}}</a> </li>
+                            {{/compare}}
+                            {{#compare profile.myspace "!=" ""}}
+                                <li>MySpace: <a href="{{profile.myspace}}" target="_blank">{{profile.myspace}}</a> </li>
+                            {{/compare}}
+                            {{#compare profile.youtube "!=" ""}}
+                                <li>YouTube: <a href="{{profile.youtube}}" target="_blank">{{profile.youtube}}</a> </li>
+                            {{/compare}}
+                            {{#compare profile.googleplus "!=" ""}}
+                                <li>Google Plus: <a href="{{profile.googleplus}}" target="_blank">{{profile.googleplus}}</a> </li>
+                            {{/compare}}
+                            {{#compare profile.MailAddr_Id "!=" "0"}}
+                                <li>Mailing Address: {{profile.MailingAddress.Address1}} {{profile.MailingAddress.Address2}}, {{profile.MailingAddress.City}}, {{profile.MailingAddress.State}}, {{formatZip profile.MailingAddress.Zip}}</li>
+                            {{/compare}}
+                            {{#compare profile.OtherAddr_Id "!=" "0"}}
+                                <li>Physical Address: {{profile.OtherAddress.Address1}} {{profile.OtherAddress.Address2}}, {{profile.OtherAddress.City}}, {{profile.OtherAddress.State}}, {{formatZip profile.OtherAddress.Zip}}</li>
+                            {{/compare}}
+                        </ul>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function(){
+        var imgs = $('img');
+        $.each(imgs, function(index,img){
+            var src = $(img).attr('src');
+            $(img).attr('src', src.replace('\\','/'));
+        });
+    });
+</script>

@@ -1,0 +1,109 @@
+<!-- TODO: This is stubbed out -->
+<section class='cart'>
+	<div class="container">
+		<br />
+		<div class="row checkout-title">
+			<div class="col-sm-12 col-md-12">
+				<h2>Your order</h2>
+			</div>
+			<br />
+		</div>
+		{{#if error}}
+			<div class="row">
+				<div class="col-sm-12 col-md-10 col-md-offset-1">
+					{{{message}}}
+					<br /><br />
+				</div>
+			</div>
+		{{else}}
+			<div class="row checkout-content">
+				<div class="col-sm-12 col-md-8">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col-md-9 col-sm-9 col-xs-7"><strong>Event Add-on</strong></div>
+								<div class="col-md-3 col-sm-3 col-xs-5 text-right"><strong>Total (USD)</strong></div>
+							</div>
+						</li>
+						{{#each options}}
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<h4>{{eventName}}</h4>
+										</td>
+									</div>
+								</div>
+							</li>
+							{{#each items}}
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-md-9 col-sm-9 col-xs-7">{{description}}</div>
+										<div class="col-md-3 col-sm-3 col-xs-5 text-right">$ <strong>{{cost}}</strong></div>
+									</div>
+								</li>
+							{{/each}}
+						{{/each}}
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col-md-9 col-sm-9 col-xs-7"><h4>Subtotal</h4></div>
+								<div class="col-md-3 col-sm-3 col-xs-5 text-right"><h4>$ <strong class="cart-subtotal">{{subtotal}}</strong></h4></div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col-md-9 col-sm-9 col-xs-7"><h4>Estimated shipping</h4></div>
+								<div class="col-md-3 col-sm-3 col-xs-5 text-right"><h4>$ <strong>{{shipping}}</strong></h4></div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col-md-9 col-sm-9 col-xs-7"><h3>Total</h3></div>
+								<div class="col-md-3 col-sm-3 col-xs-5 text-right"><h3><strong>$ {{total}}</strong></h3></div>
+							</div>
+						</li>
+					</ul>
+				</div> <!-- end of table of items -->
+				<div class="col-sm-12 col-md-4 cc-form">
+					<div class="panel panel-default credit-card-box">
+						<div class="panel-heading">
+							<h3 class="panel-title"><span class="panel-title-text">Payment Details </span><img class="panel-title-image" src="assets/images/accepted_cards.png"></h3></div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="form-group group-cc">
+										<label class="control-label" for="cardNumber">Card Number </label>
+										<div class="input-group">
+											<input class="form-control" type="text" required="" placeholder="Valid Card Number" id="cardNumber" onchange="window.Cubic.cart.resetStateField('group-cc')">
+											<div class="input-group-addon"><span><span class="fa fa-credit-card"></span></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-7">
+									<div class="form-group group-expdate">
+										<label class="control-label" for="cardExpiry"><span class="hidden-xs">Exp. </span><span class="visible-xs-inline">EXP </span> Date</label>
+										<input class="form-control" type="text" required="" placeholder="MM/YY" id="cardExpiry" onchange="window.Cubic.cart.resetStateField('group-expdate')">
+									</div>
+								</div>
+								<div class="col-xs-5 pull-right">
+									<div class="form-group group-cvc">
+										<label class="control-label" for="cardCVC">CV Code</label>
+										<input class="form-control" type="text" required="" placeholder="CVC" id="cardCVC" onchange="window.Cubic.cart.resetStateField('group-cvc')">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<button class="btn btn-success btn-block btn-lg" id="placeorder" onclick="window.Cubic.cart.placeOrder()">Place Order</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br /><br />
+		{{/if}}
+	</div>
+</section>

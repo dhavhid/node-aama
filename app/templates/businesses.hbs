@@ -1,0 +1,49 @@
+<!-- Business Listing -->
+<section class="businesses-section">
+    <div class="container margin-tb-lg">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="business-entry">
+                    <ol class="breadcrumb">
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        <li class="active">{{title}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <input type="text" name="keyword" disabled="disabled" placeholder="Search by keyword, Category, Name or Business Code" id="keyword" class="form-control" onkeyup="window.Cubic.business.searchKeyUp(this.value, event);" onkeypress="window.Cubic.business.searchBusiness(this.value, event);">
+                <span class="help-block">Type your criteria and then hit Enter.</span>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <select name="basedon" disabled="disabled" id="basedon" class="form-control" onchange="window.Cubic.business.onChangeKwyType();">
+                    <option value="-1">Search based on: </option>
+                    <option value="Keyword" selected>Keyword</option>
+                    <option value="Category">Category</option>
+                    <option value="Name">Name</option>
+                    <option value="Buscode">Business Code</option>
+                    <option value="NEW">View <strong>New</strong> Members</option>
+                    <option value="All">List All Members</option>
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-12 pages-info"></div>
+            <div class="col-md-8 col-sm-7 col-xs-12 pages text-right"></div>
+        </div>
+        <div class="row text-center" id="business-container">
+            <i class="fa fa-2x fa-spinner fa-pulse"></i> <h4>Loading directory</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12 pages text-right"></div>
+        </div>
+    </div> <!-- End container -->
+</section>
+<!-- End of Businesses Listing -->
+<script type="text/javascript">
+    $(function(){
+        window.Cubic.business.getBusinesses(1);
+    });
+</script>

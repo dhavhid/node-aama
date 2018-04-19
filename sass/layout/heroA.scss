@@ -1,0 +1,55 @@
+.layout-heroA {
+	//min-height: 550px;
+	min-height: 250px;
+	width: 100%;
+	color: white;
+	position:relative;
+	background:#333;
+	font-size:0.9em;
+	
+	h2, h5 {
+		color:#fff;
+		text-transform: uppercase;
+	}
+}
+
+.layout-heroA-img {
+	position:absolute;
+	background-size: 100%;
+	background-size: cover;
+	background-image: url(../images/banner.jpg);
+	background-attachment: relative;
+	background-position: left center;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	opacity:1;
+}
+
+@media (min-width: 400px) {
+
+	.layout-heroA {
+		min-height: 280px;
+	}
+
+	.layout-heroA-img {
+		background-position: left center;
+	}
+}
+
+@media (min-width: 600px) {
+	.layout-heroA {
+		min-height: 330px;
+	}
+
+	.layout-heroA-img {
+		background-position: left center;
+	}
+}
+
+@media (min-width: 1000px) {
+	.layout-heroA {
+		min-height: 550px;
+	}
+}

@@ -1,0 +1,98 @@
+<!-- Popout Menu -->
+<div class="navbox">
+	<div class="navbox-logo">
+		<a href='/' class="logo-box">
+			<img src="/assets/images/aama-logo-blue.png" alt="AAMA Logo" class="logo">
+			<!-- 
+				<div>American</div>
+				<div>Architectural</div>
+				<div>Manufacturers</div>
+				<div>Association</div> 
+			-->
+		</a>
+	</div>
+
+	<div class="navbox-user">
+		<span class="welcome">
+			<span class="welcome-text">Welcome,</span>
+			<a class="username" href="/session/dashboard"></a>
+		</span>
+
+		<span class="navbox-user-logout">
+			<form action='/session/logout/' method='POST'>
+				<input type='submit' class='btn navbox-user-logout-btn' value ='Logout' />
+			</form>
+		</span>
+	</div>
+
+    <div class="navbox-links clearfix">
+        <a class="button-greenc" href="/pages/join-us">Join AAMA</a>&nbsp;&nbsp;
+        <a href="javascript:void(0);" onclick="window.Cubic.showLoginBox();" class="button-blue">Sign in</a>
+    </div>
+	<div class='navbox-login clearfix'>
+		<form action='/session/login' method='POST'>
+			<input type='hidden' value='/' name='redirect' />
+			<input class='navbox-login-username' type='text' name='username' placeholder='Username' />
+			<input class='navbox-login-password' type='password' name='password' placeholder='Password' />
+			<input class='btn navbox-login-submit' type='submit' value='Login' />
+		</form>
+	</div>
+
+	<div class="navbox-menu">
+		{{#unless audience}}
+			<span class="selector-message">Select your focus:</span>
+			<ul class="audience-selector">
+				<li class="manufacturers"><a href="/manufacturers-members">Manufacturers & Members</a></li>
+				<li class="builders"><a href="/builders-contractors">Builders & Contractors</a></li>
+				<li class="architects"><a href="/architects-professionals">Architects & Professionals</a></li>
+				<li class="homeowners"><a href="/homeowners">Homeowners</a></li>
+			</ul>
+
+		{{else}}
+			{{#if audienceSlug }}
+			<ul class="subject-selector">
+				<li><a href="/{{audienceSlug}}/membership?subjectName=Membership"><span class="icon-membership"></span>Membership</a></li>
+				<li><a href="/{{audienceSlug}}/certification?subjectName=Certification"><span class="icon-certification"></span>Certification</a></li>
+				<li><a href="/{{audienceSlug}}/products?subjectName=Products"><span class="icon-products"></span>Products</a></li>
+				<li><a href="/{{audienceSlug}}/materials?subjectName=Materials"><span class="icon-materials"></span>Materials</a></li>
+				<li><a href="/{{audienceSlug}}/education?subjectName=Eucation"><span class="icon-education"></span>Education</a></li>
+				<li><a href="/{{audienceSlug}}/standards-ballots?subjectName=Standards-Ballots"><span class="icon-standards"></span>Standards & Ballots</a></li>
+				<li><a href="/{{audienceSlug}}/resources?subjectName=Resources"><span class="icon-resources"></span>Resources</a></li>
+				<li><a href="/{{audienceSlug}}/codes-regulations?subjectName=Codes-Regulations"><span class="icon-codes"></span>Codes & Regulations</a></li>
+				<li><a href="/{{audienceSlug}}/industry-organizations?subjectName=Industry Organizations"><span class="icon-industry"></span>Industry Organizations</a></li>
+				<li><a href="/{{audienceSlug}}/green-building?subjectName=Green Building"><span class="icon-green-building"></span>Green Building</a></li>
+			</ul>
+			{{/if}}
+		{{/unless}}
+	</div>
+
+	<div class="navbox-global-links">
+		<a href="#">Store</a>
+		<a href="/members">Member Directory</a>
+		<a href="/products">Product Directory</a>
+        <a href="/accredited-labs">Accredited Labs</a>
+		<a href="/people">Staff</a>
+		<a href="/faq">FAQs</a>
+		<a href="/events">Events</a>
+		<a href="/committees">Committees</a>
+		<a href="/blog">Blog</a>
+	</div>
+
+	<div class="navbox-social">
+		<a href="#"><span class="icon-feed"></span></a>
+		<a href="#"><span class="icon-facebook"></span></a>
+		<a href="#"><span class="icon-twitter"></span></a>
+		<a href="#"><span class="icon-linkedin"></span></a>
+		<a href="#"><span class="icon-youtube"></span></a>
+		<a href="#"><span class="icon-flickr"></span></a>
+	</div>
+
+	<div class="navbox-contact">
+		<a href="#">Contact Us</a>
+	</div>
+
+	<div class="menu-close">
+		<span class="glyphicon glyphicon-remove"></span>
+	</div>
+</div>
+<!-- End of Popout Menu -->

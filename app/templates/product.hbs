@@ -1,0 +1,117 @@
+<section class="products-section">
+    <div class="container margin-tb-md">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/"><i class="fa fa-home"></i> </a> </li>
+                    <li><a href="/products">Certified Product Directory</a> </li>
+                    <li class="active">{{product.name}}</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="product-info">
+                    {{#compare product.weblogourl "!=" ""}}
+                    <li><img src="{{product.weblogourl}}"></li>
+                    {{/compare}}
+                    <li><strong>Manufacturer Information</strong></li>
+                    <li class="has-product-detail">
+                        <ul>
+                            <li>Name: <strong>{{product.name}}</strong></li>
+                            <li>Address: <strong>{{product.mail_address1}} {{product.mail_address2}}, {{product.mail_city}}, {{product.mail_state}}, {{formatZip product.mail_zip}}</strong></li>
+                            <li>Phone Number: <strong>{{formatPhone product.phone1_phone}}</strong></li>
+                            {{#compare product.url "!=" ""}}
+                            <li>Website: <strong><a href="http://{{product.url}}" target="_blank">{{product.url}}</a></strong></li>
+                            {{/compare}}
+                            {{#compare product.manmodelno "!=" ""}}
+                                <li>Manufacturer code: <strong>{{product.manmodelno}}</strong></li>
+                            {{/compare}}
+                        </ul>
+                    </li>
+                    <li><strong>Product Information</strong></li>
+                    <li class="has-product-detail">
+                        <ul>
+                            <li>CPD Number: <strong>{{product.pcil_id}}</strong></li>
+                            <li>Manufacturer's Series Description: <strong>{{product.mansrsdsc}} {{product.mansrsdsc2}} {{product.mansrsdsc3}}</strong></li>
+                            {{#compare product.framemat "!=" ""}}
+                                <li>Frame Material: <strong>{{product.framemat}}</strong></li>
+                            {{/compare}}
+                        </ul>
+                    </li>
+                    <li><strong>Product Ratings</strong></li>
+                    <li class="has-product-detail">
+                        <ul>
+                            {{#compare product.perfclass "!=" ""}}
+                                <li>Performance Class: <strong>{{product.perfclass}}</strong></li>
+                            {{/compare}}
+                            {{#compare product.perfgrade "!=" "0"}}
+                                <li>Performance Grade: <strong>{{product.perfgrade}}</strong></li>
+                            {{/compare}}
+                            {{#compare product.framesizeSI "!=" "0"}}
+                                <li>Frame Size (SI): <strong>{{product.framesizeSI}}</strong></li>
+                            {{/compare}}
+                            {{#compare product.framesizePI "!=" "0"}}
+                                <li>Frame Size (IP): <strong>{{product.framesizePI}}</strong></li>
+                            {{/compare}}
+                            <li>Operator Type: <strong>{{product.operators}}</strong></li>
+                            {{#compare product.glazconf "!=" ""}}
+                                <li>Configuration: <strong>{{product.glazconf}}</strong></li>
+                            {{/compare}}
+                            <li>Test Specifications:
+                                <strong>
+                                    <ul>
+                                        {{{product.refteststd}}}
+                                    </ul>
+                                </strong>
+                            </li>
+                        </ul>
+                    </li>
+                    {{#if product.aama450}}
+                        <li><strong>AAMA 450 Mulled Unit Information</strong></li>
+                        <li class="has-product-detail">
+                            <ul>
+                                <li>Max. Size Tested: <strong>{{defaultValue product.max450size "number"}}</strong></li>
+                                <li>Design Pressure: <strong>{{defaultValue product.max450pres "number"}}</strong></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{#if product.aama506}}
+                        <li><strong>AAMA 506 Impact Information</strong></li>
+                        <li class="has-product-detail">
+                            <ul>
+                                <li>Max. size tested: <strong>{{defaultValue product.max506size "number"}}</strong></li>
+                                <li>Missile level: <strong>{{defaultValue product.level506 "number"}}</strong></li>
+                                <li>Wind zone: <strong>{{defaultValue product.windzon506 "number"}}</strong></li>
+                                <li>Rating: <strong>{{defaultValue product.rating506 "number"}}</strong></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{#if product.aamaMiami}}
+                        <li><strong>Miami/Dade Co. Information</strong></li>
+                        <li class="has-product-detail">
+                            <ul>
+                                <li>TAS 201/201 Max Size Tested (MST): <strong>{{defaultValue product.maxtas201s "number"}}</strong></li>
+                                <li>TAS 201/203 Rating: <strong>{{defaultValue product.tas201rat "number"}}</strong></li>
+                                <li>TAS 202 Max Size Tested (MST): <strong>{{defaultValue product.maxtas202s "number"}}</strong></li>
+                                <li>TAS 202 Water Test Pressure (WTP): <strong>{{defaultValue product.tas202wp "number"}}</strong></li>
+                                <li>TAS 202 Rating: <strong>{{defaultValue product.tas202rate "number"}}</strong></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    <li><strong>Additional Information</strong></li>
+                    <li class="has-product-detail">
+                        <ul>
+                            {{#compare product.suphudum "!=" ""}}
+                                <li>HUD UM111: <strong>{{defaultValue product.suphudum "bool"}}</strong></li>
+                            {{/compare}}
+                            <li>CSA A440S1-09; <strong>{{defaultValue product.supcsaas "bool"}}</strong></li>
+                            <li>AAMA 1503: <strong>{{defaultValue product.therm1503 "bool"}}</strong></li>
+                            <li>AAMA 1801 acoustic: <strong>{{defaultValue product.therm1801 "bool"}}</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

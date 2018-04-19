@@ -1,0 +1,19 @@
+.user-info-table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+	margin: 2em 0;
+}
+.user-info-table td {
+	background: #fff;
+	padding: 1em 1em;
+	border: 1px solid #ddd;
+}
+.user-info-table td:first-child {
+	background: #eee;
+	font-weight: bold;
+}
+.user-logout {
+	float: right;
+	font-size: 0.5em;
+}

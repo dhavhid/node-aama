@@ -1,0 +1,378 @@
+<style>
+    label span {color:red;}
+</style>
+<div class="container-fluid">
+    {{#if error}}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h2>You need to be logged in to see this content.</h2>
+            </div>
+        </div>
+    {{else}}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>My Profile</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                Please fill in the following information. All fields marked with an <span style="color: red;">*</span> are required.
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger" style="display:none;" id="alert-error" role="alert">
+                    <strong>Warning!</strong> There are some errors in the form below, please fix them before submitting again.<br /><br />
+                    <p class="user-error-content"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-success" style="display:none;" id="alert-success" role="alert">
+                    <strong>Success!</strong> Your changes were saved successfully.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger" style="display:none;" id="alert-danger" role="alert">
+                    <strong>Error!</strong> Your changes could not be saved at this time. Please try again later.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <form>
+                    <input type="hidden" name="_Memb_Id" value="{{profile._Memb_Id}}">
+                    <input type="hidden" name="Rep_Id" value="{{profile.Rep_Id}}">
+                    <input type="hidden" name="Email_Id" value="{{profile.Email_Id}}">
+                    <input type="hidden" name="Phone1_Id" value="{{profile.Phone1_Id}}">
+                    <input type="hidden" name="Phone2_Id" value="{{profile.Phone2_Id}}">
+                    <input type="hidden" name="Fax_Id" value="{{profile.Fax_Id}}">
+                    <input type="hidden" name="MailAddr_Id" value="{{profile.MailAddr_Id}}">
+                    <input type="hidden" name="OtherAddr_Id" value="{{profile.OtherAddr_Id}}">
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> General Info</legend>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">First Name <span>*</span></label>
+                                        <input class="form-control" type="text" name="FirstName" value="{{profile.FirstName}}" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Middle Initial</label>
+                                        <input class="form-control" type="text" name="MiddleInitial" value="{{profile.MiddleInitial}}" placeholder="MI (opt.)">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Last Name <span>*</span></label>
+                                        <input class="form-control" type="text" name="LastName" value="{{profile.LastName}}" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Preferred Name</label>
+                                        <input class="form-control" type="text" name="Perferred_Name" value="{{profile.Perferred_Name}}" placeholder="Preferred Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Title </label>
+                                        <input class="form-control" type="text" name="Title" value="{{profile.Title}}" placeholder="Title">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Position </label>
+                                        <input class="form-control" type="text" name="Position" value="{{profile.Position}}" placeholder="Position">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Salutation </label>
+                                        <input type="text" class="form-control" name="Salutation" value="{{profile.Salutation}}" placeholder="Salutation">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Formal Greeting</label>
+                                        <input class="form-control" type="text" name="Formal_Greeting" value="{{profile.Formal_Greeting}}" placeholder="Formal Greeting">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Informal Greeting</label>
+                                        <input class="form-control" type="text" name="Informal_Greeting" value="{{profile.Informal_Greeting}}" placeholder="Informal Greeting">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> Contact & Address</legend>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Phone <span>*</span></label>
+                                        <input class="form-control" type="tel" name="Phone1" value="{{profile.Phone1}}" placeholder="Phone">
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-2">
+                                    <div class="form-group">
+                                        <label class="control-label">Ext. </label>
+                                        <input class="form-control" type="text" name="Extension1" value="{{profile.Extension1}}" placeholder="Ext.">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Alt. Phone</label>
+                                        <input class="form-control" type="tel" name="Phone2" value="{{profile.Phone2}}" placeholder="Alt. Phone">
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-2">
+                                    <div class="form-group">
+                                        <label class="control-label">Ext. </label>
+                                        <input class="form-control" type="text" name="Extension2" value="{{profile.Extension2}}" placeholder="Ext.">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Fax </label>
+                                        <input class="form-control" type="tel" name="Fax" value="{{profile.Fax}}" placeholder="Fax">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Email <span>*</span></label>
+                                        <input class="form-control" type="email" name="Email_Address" value="{{profile.Email_Address}}" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">City <span>*</span></label>
+                                        <input class="form-control" type="text" name="City" value="{{profile.City}}" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">State <span>*</span></label>
+                                        <select class="form-control" name="State">
+                                            <option value=""></option>
+                                            {{#each states}}
+                                                <option value="{{code}}" {{selected code ../profile.State}}>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Zipcode <span>*</span></label>
+                                        <input class="form-control" type="text" name="Zip" value="{{profile.Zip}}" placeholder="Zipcode" min="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Country <span>*</span></label>
+                                        <select class="form-control" name="Country">
+                                            <option value=""></option>
+                                            {{#each countries}}
+                                                <option value="{{code}}" {{selected code ../profile.Country}}>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Address <span>*</span></label>
+                                        <input class="form-control" type="text" name="Address1" value="{{profile.Address1}}" placeholder="Line 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="Address2" value="{{profile.Address2}}" placeholder="Line 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="add_another_address" id="add_other_address" {{#if profile.hasOtherAddress}}checked="checked"{{/if}} onclick="window.Cubic.user.addOtherAddress();"> Add another Address
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="OtherAddress {{#if profile.hasOtherAddress}} {{else}}hidden{{/if}}">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">City <span>*</span></label>
+                                            <input class="form-control" type="text" name="City_OA" value="{{profile.City_OA}}" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">State <span>*</span></label>
+                                            <select class="form-control" name="State_OA">
+                                                <option value=""></option>
+                                                {{#each states}}
+                                                    <option value="{{code}}" {{selected code ../profile.State_OA}}>{{name}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Zipcode <span>*</span></label>
+                                            <input class="form-control" type="text" name="Zip_OA" value="{{profile.Zip_OA}}" placeholder="Zipcode" min="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Country <span>*</span></label>
+                                            <select class="form-control" name="Country_OA">
+                                                <option value=""></option>
+                                                {{#each countries}}
+                                                    <option value="{{code}}" {{selected code ../profile.Country_OA}}>{{name}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Address <span>*</span></label>
+                                            <input class="form-control" type="text" name="Address1_OA" value="{{profile.Address1_OA}}" placeholder="Line 1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="Address2_OA" value="{{profile.Address2_OA}}" placeholder="Line 2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-pencil"></i> Social Links</legend>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">LinkedIn </label>
+                                        <input class="form-control" type="text" name="linkedin" value="{{profile.linkedin}}" placeholder="LinkedIn">
+                                        <p class="help-block">i.e. http://www.linkedin.com/in/joedoe </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Twitter </label>
+                                        <input class="form-control" type="text" name="twitter" value="{{profile.twitter}}" placeholder="Twitter">
+                                        <p class="help-block">i.e. https://twitter.com/joedoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Facebook </label>
+                                        <input class="form-control" type="text" name="facebook" value="{{profile.facebook}}" placeholder="Facebook">
+                                        <p class="help-block">i.e. http://www.facebook.com/joedoe</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Google +</label>
+                                        <input class="form-control" type="text" name="googleplus" value="{{profile.googleplus}}" placeholder="Google Plus">
+                                        <p class="help-block">i.e. https://plus.google.com/+JoeDoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Youtube </label>
+                                        <input class="form-control" type="text" name="youtube" value="{{profile.youtube}}" placeholder="Youtube">
+                                        <p class="help-block">i.e. https://www.youtube.com/user/JoeDoe</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label class="control-label">MySpace </label>
+                                        <input class="form-control" type="text" name="myspace" value="{{profile.myspace}}" placeholder="MySpace">
+                                        <p class="help-block">i.e. https://myspace.com/joedoe</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="well">
+                        <fieldset>
+                            <legend><i class="fa fa-lock"></i> User Credentials</legend>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name="Username"  value="{{profile.Username}}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" name="Password" value="{{profile.Password}}" class="form-control">
+                                        <span class="help-block">Please type a password of your preference.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Re-Enter Password</label>
+                                        <input type="password" name="Password2" class="form-control">
+                                        <span class="help-block">Please re-type the password.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                            <input type="reset" class="button-greenc" value="Cancel">
+                            <button class="button-blue" id="btn_submit" onclick="window.Cubic.user.validateProfile(event);">Save</button>
+                        </div>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    {{/if}}
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('input[type="text"], input[type="email"], input[type="tel"], input[type="number"]').keyup(function(){
+            $(this).parent().removeClass('has-error');
+        });
+        $('select').change(function(){
+            $(this).parent().removeClass('has-error');
+        });
+        Inputmask('(999) 999-9999').mask('input[type="tel"]');
+        Inputmask({mask: '99999[-9999]', greedy: false}).mask('input[name="Zip"], input[name="Zip_OA"]');
+    });
+</script>

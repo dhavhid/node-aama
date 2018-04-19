@@ -1,0 +1,35 @@
+.staff-intro {
+	background: #CAE0F7;
+	border: 1px solid rgb(109, 138, 166);
+	padding: 3%;
+}
+
+.user-profile {
+	font-size: 0.9em;
+	background: #CAE0F7;
+    padding: 1em 7%;
+    margin: 1em 0;
+}
+
+.user-info {
+	margin-top: 1em;
+}
+
+.user-detail {
+	margin-top: 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+	.user-profile {
+		padding: 1em 3%;
+	}
+
+	.user-info {
+	    padding-left: 5%;
+	}
+
+	.user-detail {
+		margin-top: 0.5em;
+		text-align: center;
+	}
+}

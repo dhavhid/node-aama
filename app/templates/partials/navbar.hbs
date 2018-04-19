@@ -1,0 +1,53 @@
+<!-- Navbar -->
+<nav class="navbar">
+
+	<!-- Menu Hamburger -->
+	<a class="menu navbar-menu" href="#menu">
+		<div class="menu-hamburger">
+			<div class="burger-patty"></div>
+		</div>
+		<span class="menu-text">Menu</span>
+	</a>
+
+	<!-- Nav Logo -->
+	<a href="/">
+		<div class="logo-box">
+			<img src="/assets/images/logo.jpg" alt="Logo" class="logo img-responsive">
+			<div>American</div>
+			<div>Architectural</div>
+			<div>Manufacturers</div>
+			<div>Association</div>
+		</div>
+	</a>
+
+	<!-- Audience Selector -->
+	{{#if audience}}
+	<div class="visitor-types">
+		<div class="dropdown btn-group">
+			<button type="button" class="visitor-types-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{{audienceName audience}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li class="manufacturers"><a href="/manufacturers-members">Manufacturers & Members</a></li>
+				<li class="builders"><a href="/builders-contractors">Builders & Contractors</a></li>
+				<li class="architects"><a href="/architects-professionals">Architects & Professionals</a></li>
+				<li class="homeowners"><a href="/homeowners">Homeowners</a></li>
+			</ul>
+		</div>
+	</div>
+	{{/if}}
+
+	<!-- Search -->
+	<div class="searchbox">
+        <form method="get" action="/search">
+            <div class="input-group">
+              <input type="text" class="form-control" name="_search" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </span>
+            </div>
+        </form>
+	</div>
+
+</nav>
+<!-- End of Navbar -->

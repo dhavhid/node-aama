@@ -1,0 +1,344 @@
+<style>
+    label span {color:red;}
+</style>
+{{#if error}}
+    <section class="single-post-section">
+        <div class="container margin-tb-md">
+            <div class="row">
+                <div class="col-lg-12">
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </section>
+{{else}}
+    {{#with post}}
+
+        <!-- Single Post -->
+        <section class="single-post-section">
+            <div class="container margin-tb-md">
+
+                <div class="post">
+                    <ol class="breadcrumb">
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        {{#if ../page}}
+                            {{#if ../../parents}}
+                                {{#each ../../../parents}}
+                                    <li><a href="/pages/{{slug}}">{{title}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                        {{else}}
+                            <li><a href="/blog">blog</a></li>
+                        {{/if}}
+                        <li class="active">{{title}}</li>
+                    </ol>
+                </div>
+
+                <!-- In This Section -->
+                {{#if ../children}}
+                    <div class="page-list">
+                        <!-- <h2>In this section</h2> -->
+
+                        {{#each ../../children}}
+                            <a href="/pages/{{slug}}">{{title}}</a>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+			<!-- Post Container -->
+			<div class="post">
+                {{#unless ../page}}
+				    <div class="post-date">{{dateFormat publishDate "mmmm d, yyyy"}}</div>
+                {{/unless}}
+				<h2 class="post-title">{{title}}</h2>
+				<h3 class="post-subtitle">{{byline}}</h3>
+
+                    <div class="post-content clearfix">
+                        {{#if images.featuredImage}}
+                            <div class="post-thumb">
+                                <img class="post-img" src="{{images.featuredImage.data.thumb}}" alt="Post Image">
+                            </div>
+                        {{/if}}
+
+                        {{{content}}}
+
+                    </div> <!-- End post content -->
+
+                </div> <!-- End post -->
+
+                {{#if (or categories tags)}}
+
+                    <!-- Post Info -->
+                    <div class="post-info">
+                        {{#if categories}}
+                            <p>Read more from
+                                {{#each categories}}
+                                    <a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog-category/{{slugify name}}">{{name}}
+                                {{/each}}
+                                </a>
+                             </p>
+                        {{/if}}
+
+                        {{#if tags}}
+                            <p>Tags:
+                                {{#each tags}}
+                                    <a href="/{{#if audienceSlug}}{{audienceSlug}}/{{/if}}blog/tag/{{name}}">
+                                    {{name~}} {{#unless @last}},{{/unless}}</a>
+                                {{/each}}
+                            </p>
+                        {{/if}}
+                    </div>
+
+                {{/if}}
+
+
+                {{#if author}}
+                    <!-- About the Author -->
+                    <div class="about-author clearfix">
+                        <img class="author" src="/assets/images/author-photo.jpg" alt="Author Image">
+                        <div class="author-info">
+                            <span class="author-name">Needs Implementing</span><br />
+                            <!-- <a class="author-read-more" href="#">Read more from Michael</a> -->
+                            <a class="author-read-more" href="#">This needs to be implemented</a>
+                        </div>
+                    </div>
+                {{/if}}
+
+            </div> <!-- End container -->
+        </section>
+        <!-- End of Single Post -->
+
+        {{#if files}}
+            <section class="post-attachments">
+
+                {{#unless documentType}}
+                    <!-- Video -->
+                    <div class="post-video">
+                        {{#each files}}
+                                {{{data.embedCode}}}
+                        {{/each}}
+                    </div>
+                {{/unless}}
+
+                {{#if documentType}}
+                <!-- Image Gallery -->
+                <div class="post-images galleria">
+                    {{#each files}}
+                        <img src="{{source}}" />
+                    {{/each}}
+                </div>
+                {{/if}}
+
+            </section>
+        {{/if}}
+
+        {{#if forms}}
+            <section class="single-post-section">
+                <div class="container margin-tb-md">
+                    <section class="post-forms">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{#each forms}}
+                                    <h2>{{title}}</h2>
+                                    {{#if isVisible}}
+                                        <form name="frm{{id}}" method="post" enctype="text/plain" action="mailto:{{email}}?Subject={{title}}" novalidate>
+                                            {{#each formItems}}
+                                                {{#compare type "==" "group"}}
+                                                    <fieldset>
+                                                        {{#if label}}<legend>{{label}}</legend>{{/if}}
+                                                        {{#each formItems}}
+                                                            {{#if isVisible}}
+                                                                {{#compare type "==" "info"}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                        <textarea rows="5" cols="100" class="form-control" name="element{{id}}" {{#if isRequired}}required{{/if}}></textarea>
+                                                                        {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                                    </div>
+                                                                {{/compare}}
+                                                                {{#compare type "==" "text"}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                        <input type="{{data.inputType}}" value="{{data.defaultValue}}" class="form-control" name="element{{id}}" {{#if isRequired}}required{{/if}}>
+                                                                        {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                                    </div>
+                                                                {{/compare}}
+                                                                {{#compare type "==" "select"}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                        <select name="element{{id}}" class="form-control" {{#if isRequired}}required{{/if}}>
+                                                                            <option value=""></option>
+                                                                            {{#each data.options}}
+                                                                                <option value="{{label}}" {{#compare id "==" ../data.previewModel}}selected{{/compare}}>{{label}}</option>
+                                                                            {{/each}}
+                                                                        </select>
+                                                                        {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                                    </div>
+                                                                {{/compare}}
+                                                                {{#compare type "==" "radio"}}
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            <input type="radio" name="element{{id}}" value="{{label}}" {{#if data.checked}}checked{{/if}}>
+                                                                            {{label}}
+                                                                        </label>
+                                                                    </div>
+                                                                {{/compare}}
+                                                                {{#compare type "==" "checkbox"}}
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox" name="element{{id}}" value="{{label}}" {{#if data.checked}}checked{{/if}}>
+                                                                            {{label}}
+                                                                        </label>
+                                                                    </div>
+                                                                {{/compare}}
+                                                                {{#compare type "==" "date"}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                        <input type="text" readonly value="{{data.defaultValue}}" class="form-control single-date" name="element{{id}}" {{#if isRequired}}required{{/if}}>
+                                                                        {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                                    </div>
+                                                                {{/compare}}
+                                                            {{/if}}
+                                                        {{/each}}
+                                                    </fieldset>
+                                                {{/compare}}
+                                                {{#compare type "!=" "group"}}
+                                                    {{#if isVisible}}
+                                                        {{#compare type "==" "info"}}
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                <textarea rows="5" cols="100" class="form-control" name="element{{id}}" {{#if isRequired}}required{{/if}}></textarea>
+                                                                {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                            </div>
+                                                        {{/compare}}
+                                                        {{#compare type "==" "text"}}
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                <input type="{{data.inputType}}" value="{{data.defaultValue}}" class="form-control" name="element{{id}}" {{#if isRequired}}required{{/if}}>
+                                                                {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                            </div>
+                                                        {{/compare}}
+                                                        {{#compare type "==" "select"}}
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                <select name="element{{id}}" class="form-control" {{#if isRequired}}required{{/if}}>
+                                                                    <option value=""></option>
+                                                                    {{#each data.options}}
+                                                                        <option value="{{label}}" {{#compare id "==" ../data.previewModel}}selected{{/compare}}>{{label}}</option>
+                                                                    {{/each}}
+                                                                </select>
+                                                                {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                            </div>
+                                                        {{/compare}}
+                                                        {{#compare type "==" "radio"}}
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="element{{id}}" value="{{label}}" {{#if data.checked}}checked{{/if}}>
+                                                                    {{label}}
+                                                                </label>
+                                                            </div>
+                                                        {{/compare}}
+                                                        {{#compare type "==" "checkbox"}}
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="element{{id}}" value="{{label}}" {{#if data.checked}}checked{{/if}}>
+                                                                    {{label}}
+                                                                </label>
+                                                            </div>
+                                                        {{/compare}}
+                                                        {{#compare type "==" "date"}}
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{label}} {{#if isRequired}}<span>*</span>{{/if}}</label>
+                                                                <input type="text" readonly value="{{data.defaultValue}}" class="form-control single-date" name="element{{id}}" {{#if isRequired}}required{{/if}}>
+                                                                {{#if isRequired}}<p class="help-block">This field is required.</p>{{/if}}
+                                                            </div>
+                                                        {{/compare}}
+                                                    {{/if}}
+                                                {{/compare}}
+                                            {{/each}}
+                                            <div class="form-group"><hr /></div>
+                                            <div class="form-group text-right">
+                                                <button type="reset" class="button-greenc">Reset</button>
+                                                <button type="submit" onclick="return validate('frm{{id}}', event);" class="button-blue">Submit</button>
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                {{/each}}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        {{/if}}
+        <section class="related-content">
+            <div class="container margin-tb-md">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Related Content</h1>
+                        <p>If you like {{title}}, you might also like</p>
+                    </div>
+                </div>
+                <div class="row">
+                {{#each relatedContent}}
+                    <div class="col-sm-3 col-xs-6 col-xxs-12">
+                        <div class="post-thumb">
+                            {{#if images}}
+                                {{#compare type "==" "news"}}
+                                    <a href="/blog/{{id}}"><img class="img-responsive" src="{{images.featuredImage.data.thumb}}" alt="{{title}}"></a>
+                                {{/compare}}
+                                {{#compare type "==" "static_page"}}    
+                                    <a href="/pages/{{slug}}"><img class="img-responsive" src="{{images.featuredImage.data.thumb}}" alt="{{title}}"></a>
+                                {{/compare}}
+                            {{else}}
+                                {{#compare type "==" "news"}}
+                                    <a href="/blog/{{id}}"><img class="img-responsive" src="http://placehold.it/250.png/f5f5f5/f5f5f5" alt="{{title}}"></a>
+                                {{/compare}}
+                                {{#compare type "==" "static_page"}}    
+                                    <a href="/pages/{{slug}}"><img class="img-responsive" src="http://placehold.it/250.png/f5f5f5/f5f5f5" alt="{{title}}"></a>
+                                {{/compare}}    
+                            {{/if}}
+                        </div>
+                        <p>
+                            {{#compare type "==" "news"}}
+                                <a href="/blog/{{id}}">{{title}}</a>
+                            {{/compare}}
+                            {{#compare type "==" "static_page"}}  
+                                <a href="/pages/{{slug}}">{{title}}</a>
+                            {{/compare}}
+                        </p>
+                    </div>
+                {{/each}}
+            </div>
+            </div>
+        </section>
+    {{/with}}
+ {{/if}}
+
+<script type="text/javascript">
+    $(function(){
+        $('.single-date').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            format: 'MM/DD/YYYY'
+        });
+    });
+    function validate(formName, e)
+    {
+        var valid = true;
+        // get all inputs(date, text, number, email)
+        var inputs = $('form[name="' + formName + '"] input[type="text"], form[name="' + formName + '"] input[type="date"], form[name="' + formName + '"] input[type="number"], form[name="' + formName + '"] input[type="email"], form[name="' + formName + '"] select, form[name="' + formName + '"] textarea');
+        $.each(inputs, function(index, input){
+            input = $(input);
+            if (input.prop('required') && input.val().trim().length == 0) {
+                input.parent().addClass('has-error');
+                valid = false;
+            } else if (input.prop('required') && input.val().trim().length > 0) {
+                input.parent().removeClass('has-error').addClass('has-success');
+            }
+        });
+        if (!valid) {
+            alert('You have errors in the form. Please check and correct.');
+            e.preventDefault();
+            return false;
+        }
+    }
+</script>
